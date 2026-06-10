@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SteinzPurple — Closed-loop purple-team validation | SteinzSecurity</title>
+<meta name="description" content="SteinzPurple is the closed-loop purple-team validation platform: plan ATT&CK-mapped tests, execute or import, collect SIEM/EDR evidence, score outcomes, ticket gaps, and prove fixes with retests.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%237B5BFF' stroke-width='4'/%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><span>Steinz<em>Security</em></span><i></i></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="navlinks">MENU</button>
+    <nav class="nav-links" id="navlinks" aria-label="Main">
+      <a class="dot-purple active" href="steinzpurple.html">SteinzPurple</a>
+      <a class="dot-sast" href="steinzsast.html">SteinzSAST</a>
+      <a class="dot-asm" href="steinzasm.html">SteinzASM</a>
+      <a href="index.html#platform">Platform</a>
+      <a class="btn btn-primary nav-cta" href="#demo">Book a demo</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero on-ink">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge"><span class="pulse"></span> <b>SteinzPurple</b>&nbsp;· Flagship</span>
+      <h1 class="display">The validation loop, <span class="grad">closed.</span></h1>
+      <p class="lede">Most tools stop at simulation results. SteinzPurple plans ATT&amp;CK-mapped validation, executes or imports tests, collects SIEM/EDR evidence, scores every outcome, opens remediation work — and proves the fix with a retest.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#demo">Book a demo <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#loop">How the loop works</a>
+      </div>
+      <div class="hero-meta">
+        <span>ATT&amp;CK-mapped planning</span>
+        <span>Evidence on every test</span>
+        <span>Retest proof</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="panel" role="img" aria-label="Assessment panel showing per-tool detection outcomes and latency for one technique">
+        <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Assessment · T1003 Credential Dumping</span></div>
+        <div class="panel-row">
+          <span class="l"><b>SentinelOne</b><span class="mono">rule SO-CRED-114 · 38s</span></span>
+          <span class="lat"><i class="b-alert" style="width:26%"></i></span>
+          <span class="tag t-alert">ALERTED</span>
+        </div>
+        <div class="panel-row">
+          <span class="l"><b>Chronicle</b><span class="mono">UDM match · 2m 04s</span></span>
+          <span class="lat"><i class="b-vio" style="width:68%"></i></span>
+          <span class="tag t-vio">LOGGED CENTRALLY</span>
+        </div>
+        <div class="panel-row">
+          <span class="l"><b>Tanium</b><span class="mono">no signal in window</span></span>
+          <span class="lat"><i class="b-miss" style="width:100%;opacity:.45"></i></span>
+          <span class="tag t-miss">MISSED</span>
+        </div>
+        <div class="panel-row">
+          <span class="l"><b>auditd</b><span class="mono">execve trace · 4s</span></span>
+          <span class="lat"><i class="b-vio" style="width:8%"></i></span>
+          <span class="tag t-vio">LOGGED LOCALLY</span>
+        </div>
+        <div class="panel-row">
+          <span class="l"><b>Finding F-291</b><span class="mono">→ Ticket #482 · retest scheduled</span></span>
+          <span class="tag t-ok">OWNED</span>
+        </div>
+        <div class="vmix" aria-hidden="true"><i class="b-alert" style="flex:1"></i><i class="b-vio" style="flex:2"></i><i class="b-miss" style="flex:1"></i><i class="b-ok" style="flex:1"></i></div>
+        <div class="vmix-legend" aria-hidden="true"><span>1 alerted</span><span>2 logged</span><span>1 missed</span><span>1 owned</span></div>
+      </div>
+      <div class="float-chip" role="img" aria-label="Retest result: missed became alerted in 52 seconds, evidence attached">
+        <span class="fc-k">Retest proof</span>
+        <b>MISSED → <em>ALERTED</em></b>
+        <span class="fc-t">52s detection · evidence attached</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="sheet">
+
+  <!-- ============ THE LOOP ============ -->
+  <section class="section" id="loop">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">The closed loop</p>
+        <h2 class="h2">Seven stages. Zero loose ends.</h2>
+        <p class="lede">Every test travels the full loop — and when the report says "fixed," there's a retest behind it.</p>
+      </div>
+      <div class="pipeline rich reveal" style="margin-bottom:48px">
+        <div class="step s1">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10" cy="10" r="5.6"/><circle cx="10" cy="10" r="1.9"/><path d="M10 1.6v2.6M10 15.8v2.6M1.6 10h2.6M15.8 10h2.6"/></svg></span>
+          <span class="k">01</span><div class="t">Plan</div>
+          <div class="d">ROE-gated, ATT&amp;CK-mapped campaigns</div>
+        </div>
+        <div class="step s2">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M11.6 2.4 5.4 11h4.2L8 17.6 14.6 9h-4.2l1.2-6.6z"/></svg></span>
+          <span class="k">02</span><div class="t">Execute</div>
+          <div class="d">Native agents — or import your logs</div>
+        </div>
+        <div class="step s3">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="8.6" cy="8.6" r="5.2"/><path d="m12.6 12.6 4.6 4.6"/></svg></span>
+          <span class="k">03</span><div class="t">Evidence</div>
+          <div class="d">SIEM/EDR fanout, raw refs stored</div>
+        </div>
+        <div class="step s4">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M2.8 13.6a7.2 7.2 0 0 1 14.4 0"/><path d="m10 13.6 3.6-4.6"/><circle cx="10" cy="13.6" r="1.3"/></svg></span>
+          <span class="k">04</span><div class="t">Score</div>
+          <div class="d">6 verdicts, per tool, per test</div>
+        </div>
+        <div class="step s5">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M3 8.6V4a1 1 0 0 1 1-1h4.6L17 11.4 11.4 17 3 8.6z"/><circle cx="6.6" cy="6.6" r="1.2"/></svg></span>
+          <span class="k">05</span><div class="t">Ticket</div>
+          <div class="d">Misses become owned work</div>
+        </div>
+        <div class="step s6">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M16.4 10A6.4 6.4 0 1 1 14 5"/><path d="M14.6 1.8v3.4h-3.4"/></svg></span>
+          <span class="k">06</span><div class="t">Retest</div>
+          <div class="d">Same test, re-run — for proof</div>
+        </div>
+        <div class="step s7">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4.6 15.6V8.4M10 15.6V3.8M15.4 15.6v-5.2M2.4 18h15.2"/></svg></span>
+          <span class="k">07</span><div class="t">Report</div>
+          <div class="d">Heatmaps &amp; exec summaries</div>
+        </div>
+      </div>
+      <div class="stat-strip reveal d1" style="margin-top:56px">
+        <div class="stat"><div class="n">15,271</div><div class="d">live API security probes passing in CI — 0 failed, 0 skipped</div></div>
+        <div class="stat s-blue"><div class="n">6</div><div class="d">normalized verdicts, scored per security tool, per test</div></div>
+        <div class="stat s-red"><div class="n">100%</div><div class="d">of outcomes linked to raw detection evidence and audit chain</div></div>
+        <div class="stat"><div class="n">1</div><div class="d">governed system of record for your whole validation program</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE ROWS ============ -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+
+      <div class="feature-row reveal">
+        <div>
+          <p class="eyebrow">01 · Plan</p>
+          <h2 class="h2">Authorized by design</h2>
+          <p>Validation work starts governed, not improvised. Build campaigns from an ATT&amp;CK-mapped catalog of actions and variants, scope them to approved targets, and gate execution behind rules of engagement.</p>
+          <ul class="check-list">
+            <li>ATT&amp;CK tactics, techniques, actions, and signed content packs</li>
+            <li>Rules of engagement, approvals, and execution windows</li>
+            <li>Target allowlists with egress and SSRF guards</li>
+            <li>One-click emergency stop across every running campaign</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel gov" role="img" aria-label="Governance console showing scoped techniques, active guardrails, granted approvals, and an armed emergency stop">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">ROE · Q2 Validation Window</span></div>
+            <div class="gov-sec">
+              <span class="gov-lab">Techniques in scope</span>
+              <div class="gov-chips">
+                <span class="gchip">T1003</span><span class="gchip">T1059.001</span><span class="gchip">T1021.002</span><span class="gchip">T1567</span><span class="gchip more">+ 9 variants</span>
+              </div>
+            </div>
+            <div class="gov-sec">
+              <span class="gov-lab">Guardrails</span>
+              <div class="gov-toggles">
+                <div class="tgl on"><i></i>Egress guard</div>
+                <div class="tgl on"><i></i>SSRF guard</div>
+                <div class="tgl on"><i></i>Target allowlist</div>
+                <div class="tgl"><i></i>Off-hours runs</div>
+              </div>
+            </div>
+            <div class="gov-sec">
+              <span class="gov-lab">Approvals</span>
+              <div class="approvals">
+                <span class="appr"><i>MK</i>CISO <b>✓</b></span>
+                <span class="appr"><i>RD</i>SOC lead <b>✓</b></span>
+                <span class="appr pend"><i>JT</i>Platform <b>·</b></span>
+              </div>
+            </div>
+            <div class="estop">■ &nbsp;EMERGENCY STOP — ARMED · TENANT-WIDE</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row flip reveal">
+        <div>
+          <p class="eyebrow">02 · Execute or import</p>
+          <h2 class="h2">Native agents — or your own logs</h2>
+          <p>Run tests safely through native agents with mTLS enrollment, signed and encrypted task envelopes, and automatic cleanup and rollback. Or skip agents entirely and import structured or manual execution logs from work you've already done.</p>
+          <ul class="check-list">
+            <li>Agent enrollment and approval with mTLS relay</li>
+            <li>Signed task envelopes, dispatch leases, and acknowledgements</li>
+            <li>Watchdog resilience tier: liveness checks and process respawn</li>
+            <li>Import-first assessments for manual purple-team exercises</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="Agent mesh diagram: a central relay dispatches signed task envelopes over mTLS to enrolled agents, with one import-first node for manual logs">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Agents · Campaign Dispatch</span></div>
+            <svg class="mesh" viewBox="0 0 460 316" aria-hidden="true">
+              <defs>
+                <linearGradient id="relayGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#ff5d5d"/><stop offset=".5" stop-color="#7b5bff"/><stop offset="1" stop-color="#4fa5ff"/>
+                </linearGradient>
+              </defs>
+              <line class="mlink" x1="230" y1="148" x2="92" y2="62"/>
+              <line class="mlink" x1="230" y1="148" x2="368" y2="62"/>
+              <line class="mlink" x1="230" y1="148" x2="92" y2="240"/>
+              <line class="mlink soft" x1="230" y1="148" x2="368" y2="240"/>
+              <text class="mtls" x="138" y="92">mTLS</text>
+              <text class="mtls" x="296" y="92">mTLS</text>
+              <text class="mtls" x="134" y="214">mTLS</text>
+              <text class="mtls" x="292" y="214">API</text>
+
+              <circle class="relay-ring" cx="230" cy="148" r="33"/>
+              <text class="relay-t" x="230" y="146" text-anchor="middle">RELAY</text>
+              <text class="mmeta" x="230" y="159" text-anchor="middle">signed envelopes</text>
+
+              <g>
+                <rect class="mnode" x="30" y="32" width="126" height="56" rx="12"/>
+                <circle class="mdot-ok" cx="142" cy="46" r="3.4"/>
+                <text class="mname" x="44" y="55">edge-win-04</text>
+                <text class="mmeta" x="44" y="71">T1059.001 · COMPLETED</text>
+              </g>
+              <g>
+                <rect class="mnode" x="306" y="32" width="126" height="56" rx="12"/>
+                <circle class="mdot-run" cx="418" cy="46" r="3.4"/>
+                <text class="mname" x="320" y="55">corp-lnx-11</text>
+                <text class="mmeta" x="320" y="71">T1021.002 · RUNNING</text>
+              </g>
+              <g>
+                <rect class="mnode" x="30" y="210" width="126" height="56" rx="12"/>
+                <circle class="mdot-sched" cx="142" cy="224" r="3.4"/>
+                <text class="mname" x="44" y="233">edge-win-07</text>
+                <text class="mmeta" x="44" y="249">CLEANUP + ROLLBACK</text>
+              </g>
+              <g>
+                <rect class="mnode import" x="306" y="210" width="126" height="56" rx="12"/>
+                <circle class="mdot-ok" cx="418" cy="224" r="3.4"/>
+                <text class="mname" x="320" y="233">redteam.log</text>
+                <text class="mmeta" x="320" y="249">IMPORT · 14 ENTRIES ✓</text>
+              </g>
+
+              <text class="mcap" x="230" y="302" text-anchor="middle">SIGNED ENVELOPES · DISPATCH LEASES · WATCHDOG RESPAWN</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div>
+          <p class="eyebrow">03–04 · Evidence &amp; score</p>
+          <h2 class="h2">Verdicts your SIEM can vouch for</h2>
+          <p>After execution, detection workers wait out each tool's ingestion window, then query your stack — Chronicle, SentinelOne, Tanium, auditd, Windows Event Logs, and more. Results are normalized into per-tool verdicts with rule hits, latency, and chain-of-custody checksums attached.</p>
+          <div class="verdicts" style="margin-top:22px">
+            <span class="verdict v-blocked">blocked</span>
+            <span class="verdict v-alerted">alerted</span>
+            <span class="verdict v-logc">logged centrally</span>
+            <span class="verdict v-logl">logged locally</span>
+            <span class="verdict v-missed">missed</span>
+            <span class="verdict v-na">not applicable</span>
+          </div>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="Detection timeline: from execution at t equals zero, auditd logs in 4 seconds, SentinelOne alerts in 38 seconds, Chronicle logs centrally in 2 minutes 4 seconds, and Tanium misses for the whole window">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Evidence · Detection Timeline</span></div>
+            <div class="tl-axis"><span>t=0 · execute</span><span>+1m</span><span>+2m</span><span>window ▸</span></div>
+            <div class="tl-row">
+              <span class="tl-name">auditd</span>
+              <div class="tl-track"><i class="tl-bar b-vio" style="width:7%"></i><span class="tl-v"><b>LOGGED LOCALLY</b> · 4s</span></div>
+            </div>
+            <div class="tl-row">
+              <span class="tl-name">SentinelOne</span>
+              <div class="tl-track"><i class="tl-bar b-alert" style="width:27%"></i><span class="tl-v"><b>ALERTED</b> · 38s</span></div>
+            </div>
+            <div class="tl-row">
+              <span class="tl-name">Chronicle</span>
+              <div class="tl-track"><i class="tl-bar b-vio" style="width:62%"></i><span class="tl-v"><b>LOGGED CENTRALLY</b> · 2m04s</span></div>
+            </div>
+            <div class="tl-row">
+              <span class="tl-name">Tanium</span>
+              <div class="tl-track miss"><span class="tl-v"><b class="m">MISSED</b> · window elapsed</span></div>
+            </div>
+            <div class="tl-foot"><span>SHA-256 <b>✓</b></span><span>HASH CHAIN <b>✓</b></span><span>RAW REFS STORED <b>✓</b></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row flip reveal">
+        <div>
+          <p class="eyebrow">05–06 · Ticket &amp; retest</p>
+          <h2 class="h2">Misses become owned work — then proof</h2>
+          <p>A missed detection isn't a row in a spreadsheet. SteinzPurple converts gaps into native tickets with assignments, comments, attachments, and status events — then schedules the retest and compares initial versus retest outcomes side by side.</p>
+          <ul class="check-list">
+            <li>Findings and remediation tasks generated from misses</li>
+            <li>Native ticketing with assignment rules and retest rollups</li>
+            <li>Retest comparisons that show improvement — or regression</li>
+            <li>Immutable score snapshots for every assessment</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="Ticket 482 lifecycle: initial run missed, gap was assigned and fixed, retest alerted in 52 seconds — gap closed with proof">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Ticket #482 · Exfil Detection Gap</span></div>
+            <div class="diff-card before">
+              <span class="dc-tag">INITIAL RUN · T1567</span>
+              <b>MISSED</b>
+              <span class="dc-meta">0 of 3 connectors fired in the detection window</span>
+            </div>
+            <div class="diff-spine">
+              <span class="ds-step"><i></i>assigned → <b>detection-engineering</b> <span class="dim">· auto-rule</span></span>
+              <span class="ds-step"><i></i>fix shipped <span class="dim">· new egress analytics rule</span></span>
+              <span class="ds-step"><i></i>retest queued <span class="dim">· same variant, same host</span></span>
+            </div>
+            <div class="diff-card after">
+              <span class="dc-tag">RETEST · T1567</span>
+              <b>ALERTED <em>· 52s</em></b>
+              <span class="dc-meta">SentinelOne + Chronicle · evidence attached to ticket</span>
+            </div>
+            <div class="diff-delta">MISSED → ALERTED · GAP CLOSED WITH PROOF</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="feature-row reveal">
+        <div>
+          <p class="eyebrow">07 · Report</p>
+          <h2 class="h2">Coverage you can show the board</h2>
+          <p>Generate ATT&amp;CK heatmaps, Navigator layers, benchmark comparisons, and executive summaries — every number traceable back to stored evidence, every trend backed by immutable snapshots.</p>
+          <ul class="check-list">
+            <li>ATT&amp;CK Navigator layers and coverage heatmaps</li>
+            <li>Benchmark reports and assessment-over-assessment trends</li>
+            <li>Executive summaries built from real outcomes, not estimates</li>
+            <li>Tenant-scoped coverage graphs with views and exports</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="ATT&CK coverage matrix by tactic, with 78 percent of techniques covered and 12 more covered than the last assessment">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">ATT&amp;CK Coverage · Navigator Export</span></div>
+            <div class="mx" aria-hidden="true">
+              <div class="mx-col"><span class="mx-lab">INIT</span><i class="c-ok"></i><i class="c-blue"></i><i class="c-un"></i></div>
+              <div class="mx-col"><span class="mx-lab">EXEC</span><i class="c-ok"></i><i class="c-ok2"></i><i class="c-blue"></i><i class="c-vio"></i></div>
+              <div class="mx-col"><span class="mx-lab">PERS</span><i class="c-vio"></i><i class="c-blue"></i><i class="c-un"></i></div>
+              <div class="mx-col"><span class="mx-lab">PRIV</span><i class="c-miss"></i><i class="c-vio2"></i><i class="c-ok"></i></div>
+              <div class="mx-col"><span class="mx-lab">EVAS</span><i class="c-blue"></i><i class="c-vio"></i><i class="c-vio2"></i><i class="c-un"></i></div>
+              <div class="mx-col"><span class="mx-lab">CRED</span><i class="c-miss"></i><i class="c-blue"></i><i class="c-ok2"></i></div>
+              <div class="mx-col"><span class="mx-lab">DISC</span><i class="c-ok"></i><i class="c-vio"></i><i class="c-blue"></i><i class="c-ok2"></i></div>
+              <div class="mx-col"><span class="mx-lab">LAT</span><i class="c-vio2"></i><i class="c-miss"></i><i class="c-un"></i></div>
+              <div class="mx-col"><span class="mx-lab">EXFIL</span><i class="c-ok"></i><i class="c-blue"></i><i class="c-vio"></i></div>
+            </div>
+            <div class="mx-legend" aria-hidden="true">
+              <span><i class="c-ok"></i>blocked</span>
+              <span><i class="c-blue"></i>alerted</span>
+              <span><i class="c-vio"></i>logged</span>
+              <span><i class="c-miss"></i>missed</span>
+              <span><i class="c-un"></i>untested</span>
+            </div>
+            <div class="mx-foot" aria-hidden="true">
+              <div class="donut">
+                <svg viewBox="0 0 56 56">
+                  <defs>
+                    <linearGradient id="covGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#ff5d5d"/><stop offset=".5" stop-color="#7b5bff"/><stop offset="1" stop-color="#4fa5ff"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="tr" cx="28" cy="28" r="23"/>
+                  <circle class="vl" cx="28" cy="28" r="23" stroke-dasharray="112.7 144.5"/>
+                </svg>
+                <div class="dn"><b>78%</b><span>techniques covered, evidence-backed</span></div>
+              </div>
+              <div class="spark">
+                <svg viewBox="0 0 82 40">
+                  <polyline points="3,33 16,29 29,31 42,23 55,19 68,12 79,8" fill="none" stroke="#5fe0ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="79" cy="8" r="3" fill="#5fe0ae"/>
+                </svg>
+                <div class="sp"><b>+12</b><span>vs last assessment snapshot</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ COMPARISON ============ -->
+  <section class="section" id="compare" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Positioning</p>
+        <h2 class="h2">Competitors validate controls.<br>SteinzPurple closes the loop.</h2>
+        <p class="lede">Adversary-emulation frameworks run the activity. Tracking tools record it. BAS platforms simulate it. SteinzPurple's wedge is different: the closed-loop validation system of record — evidence, remediation, retest, audit, and reporting in one place.</p>
+      </div>
+      <div class="table-scroll reveal d1">
+        <table class="compare">
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Traditional BAS</th>
+              <th>Tracking tools</th>
+              <th class="steinz-col">SteinzPurple</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Run validation tests</td><td><span class="glyph-yes">✓</span></td><td><span class="glyph-no">—</span> partial</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>Manual / import-first assessments</td><td><span class="glyph-part">◐</span> partial</td><td><span class="glyph-yes">✓</span></td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>SIEM/EDR evidence collection</td><td><span class="glyph-part">◐</span> partial</td><td>manual</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>Per-tool outcome scoring</td><td><span class="glyph-part">◐</span> partial</td><td>manual</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>Native remediation tickets</td><td><span class="glyph-part">◐</span> partial</td><td><span class="glyph-part">◐</span> partial</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>Retest proof</td><td><span class="glyph-part">◐</span> partial</td><td>manual</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>Audit &amp; evidence chain</td><td><span class="glyph-part">◐</span> partial</td><td><span class="glyph-part">◐</span> partial</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>Validation program system of record</td><td>mixed</td><td><span class="glyph-part">◐</span> partial</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+            <tr><td>ROE, approvals, emergency stop</td><td>mixed</td><td><span class="glyph-part">◐</span> partial</td><td class="steinz-col"><span class="glyph-yes">✓</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHO IT'S FOR ============ -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Built for</p>
+        <h2 class="h2">Teams that have to prove it</h2>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal"><span class="chip-icon">◎</span><h3 class="h3">Purple-team leads</h3><p>One source of truth for planning, execution, evidence, and closure across every exercise.</p></div>
+        <div class="card reveal d1"><span class="chip-icon">◉</span><h3 class="h3">Detection engineers</h3><p>Per-tool verdicts and latency on every technique — so you know exactly which rule to write next.</p></div>
+        <div class="card reveal d2"><span class="chip-icon">⬡</span><h3 class="h3">SOC engineering</h3><p>Connector-level evidence from Chronicle, SentinelOne, Tanium, auditd, and Windows Event Logs.</p></div>
+        <div class="card reveal"><span class="chip-icon">▲</span><h3 class="h3">Red-team operators</h3><p>Import your execution logs and let the platform handle evidence, scoring, and reporting.</p></div>
+        <div class="card reveal d1"><span class="chip-icon">⛨</span><h3 class="h3">Regulated organizations</h3><p>Governed evidence control, hash-chained audit, and immutable snapshots that hold up to scrutiny.</p></div>
+        <div class="card reveal d2"><span class="chip-icon">∞</span><h3 class="h3">MSSPs</h3><p>Multi-tenant by design — run recurring validation programs across clients with clean separation.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DEMO WORKFLOW ============ -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="feature-row reveal" style="border-top:0;padding-top:0">
+        <div>
+          <p class="eyebrow">First 30 minutes</p>
+          <h2 class="h2">Your first closed loop</h2>
+          <p>The recommended first run takes one assessment all the way around the loop — and ends with a retest comparison and an executive report you didn't have to build by hand.</p>
+          <p style="margin-top:24px"><a class="btn btn-primary" href="#demo">Run it with us <span class="arrow">→</span></a></p>
+        </div>
+        <div class="feature-art">
+          <div class="panel">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Demo · Closed-Loop Path</span></div>
+            <div class="code" aria-label="Demo workflow steps">
+<span class="ln">01</span><span class="kw">load</span>   starter ATT&amp;CK validation pack
+<span class="ln">02</span><span class="kw">create</span> assessment + campaign
+<span class="ln">03</span><span class="kw">run</span>    safe tests <span class="cm">// or import a log</span>
+<span class="ln">04</span><span class="kw">query</span>  SIEM/EDR connectors
+<span class="ln">05</span><span class="kw">review</span> per-tool outcomes
+<span class="ln">06</span><span class="kw">ticket</span> the misses → <span class="fn">owned work</span>
+<span class="ln">07</span><span class="kw">retest</span> the fixes
+<span class="ln">08</span><span class="kw">report</span> heatmap + exec summary ✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section" id="demo" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta on-ink reveal">
+        <p class="eyebrow" style="justify-content:center">SteinzPurple</p>
+        <h2 class="h2">Prove your detections work</h2>
+        <p>Walk the loop on a demo tenant or your own stack — from ATT&amp;CK-mapped plan to retest proof.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="mailto:hello@steinzsecurity.com?subject=SteinzPurple%20demo">Book a demo <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="index.html#products">See all products</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="index.html" style="max-width:170px"><span>Steinz<em>Security</em></span><i></i></a>
+        <p class="blurb">The evidence loop for modern security teams. Find it, fix it, prove it.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <a href="steinzpurple.html">SteinzPurple</a>
+        <a href="steinzsast.html">SteinzSAST</a>
+        <a href="steinzasm.html">SteinzASM</a>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="index.html#platform">Why Steinz</a>
+        <a href="steinzpurple.html#loop">The validation loop</a>
+        <a href="steinzpurple.html#compare">Compare</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="index.html#demo">Book a demo</a>
+        <a href="mailto:hello@steinzsecurity.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> SteinzSecurity</span>
+      <span>RED + BLUE = PURPLE</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
