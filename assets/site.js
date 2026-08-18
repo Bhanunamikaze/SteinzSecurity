@@ -1,10 +1,33 @@
-// SteinzSecurity — shared interactions
+// SteinzSecurity - shared interactions
 
 (function () {
+  // ---- Brand variables ---------------------------------------------------
+  // Product names are internal working names. To rebrand a product, change
+  // its suffix here - every element carrying data-name / data-mark (nav,
+  // heroes, product cards, headings, footers) updates from this one place.
+  // Full product name = "Steinz" + suffix. Page <title>/meta stay hardcoded.
+  const BRAND = {
+    company: 'Steinz Security Private Limited',
+    suffixes: { dast: 'DAST', purple: 'Purple' },
+  };
+  document.querySelectorAll('[data-mark]').forEach((el) => {
+    const s = BRAND.suffixes[el.getAttribute('data-mark')];
+    if (s) el.innerHTML = 'Steinz<em>' + s + '</em>';
+  });
+  document.querySelectorAll('[data-name]').forEach((el) => {
+    const s = BRAND.suffixes[el.getAttribute('data-name')];
+    if (s) el.textContent = 'Steinz' + s;
+  });
+  document.querySelectorAll('[data-company]').forEach((el) => {
+    el.textContent = BRAND.company;
+  });
+
   // Nav scroll state
   const nav = document.querySelector('.nav');
-  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 24);
-  onScroll();
+  let navTick = false;
+  const setNav = () => { nav.classList.toggle('scrolled', window.scrollY > 24); navTick = false; };
+  const onScroll = () => { if (!navTick) { navTick = true; requestAnimationFrame(setNav); } };
+  setNav();
   window.addEventListener('scroll', onScroll, { passive: true });
 
   // Mobile menu

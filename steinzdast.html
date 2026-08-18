@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SteinzDAST | Next-gen penetration testing assistant | Steinz Security</title>
+<meta name="description" content="A next-gen penetration testing assistant. Scan by chat or voice; every finding is confirmed by an independent, reproducible test. Signal, not noise.">
+<link rel="canonical" href="https://steinzsecurity.com/steinzdast.html">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#120d1f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Steinz Security">
+<meta property="og:url" content="https://steinzsecurity.com/steinzdast.html">
+<meta property="og:title" content="SteinzDAST | Next-gen penetration testing assistant">
+<meta property="og:description" content="Scan by chat or voice. A next-gen penetration testing assistant that reports only confirmed, reproducible vulnerabilities. Signal, not noise.">
+<meta property="og:image" content="https://steinzsecurity.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Steinz Security | Security you can prove">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SteinzDAST | Next-gen penetration testing assistant">
+<meta name="twitter:description" content="Scan by chat or voice. A next-gen penetration testing assistant that reports only confirmed, reproducible vulnerabilities. Signal, not noise.">
+<meta name="twitter:image" content="https://steinzsecurity.com/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"></noscript>
+<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23FF8A3D' stroke-width='4'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/icon-512.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SteinzDAST","applicationCategory":"SecurityApplication","applicationSubCategory":"Dynamic Application Security Testing","operatingSystem":"Web","url":"https://steinzsecurity.com/steinzdast.html","image":"https://steinzsecurity.com/assets/og-image.png","description":"A next-gen penetration testing assistant. Run authorized web-app scans by chat or voice; every finding is confirmed by an independent, reproducible test.","provider":{"@type":"Organization","name":"Steinz Security Private Limited","url":"https://steinzsecurity.com/"}}</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="index.html"><span>Steinz<em>Security</em></span><i></i></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="navlinks">MENU</button>
+    <nav class="nav-links" id="navlinks" aria-label="Main">
+      <a class="dot-dast active" href="steinzdast.html" data-name="dast">SteinzDAST</a>
+      <a class="dot-purple" href="steinzpurple.html" data-name="purple">SteinzPurple</a>
+      <a class="btn btn-primary btn-dast nav-cta" href="#demo">Book a demo</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero tint-dast on-ink">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-badge"><span class="pulse p-dast"></span> <b data-name="dast">SteinzDAST</b>&nbsp;· Next-gen penetration testing assistant</span>
+      <h1 class="display">Findings you can<br><span class="grad-dast">trust.</span></h1>
+      <p class="lede">SteinzDAST is a next-gen penetration testing assistant you run from your browser, by chat or by voice. It probes like an attacker but reports like a precise one: every vulnerability it surfaces is confirmed by an independent, reproducible test. Signal, not noise.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-dast" href="#demo">Book a demo <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#wedge">Why it's different</a>
+      </div>
+      <div class="hero-meta">
+        <span>Chat &amp; voice control</span>
+        <span>Deterministic confirmation</span>
+        <span>Authorized-only by design</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="panel" role="img" aria-label="Scan result: 1,284 raw candidates reduced to 7 confirmed findings with zero false positives; a SQL injection promoted with independent evidence">
+        <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Scan · app.example.com</span></div>
+        <div class="scan-bar"><span class="sb-k">Candidates gathered</span><span class="sb-n">1,284</span></div>
+        <div class="panel-row">
+          <span class="l"><b>SQL injection</b><span class="mono">/api/orders?id= · UNION</span></span>
+          <span class="tag t-ok">PROMOTED</span>
+        </div>
+        <ul class="ev-list">
+          <li>out-of-band callback fired <b>✓</b></li>
+          <li>payload reproduced on replay <b>✓</b></li>
+          <li>in scope · not a duplicate <b>✓</b></li>
+        </ul>
+        <div class="panel-row" style="margin-top:14px">
+          <span class="l"><b>Password reset flow</b><span class="mono">business-logic · single identity</span></span>
+          <span class="tag t-vio">NEEDS REVIEW</span>
+        </div>
+        <div class="panel-row">
+          <span class="l"><b>Missing security header</b><span class="mono">not chained · no impact</span></span>
+          <span class="tag t-miss">DROPPED</span>
+        </div>
+        <div class="vmix" aria-hidden="true"><i class="b-ok" style="flex:7"></i><i class="b-vio" style="flex:4"></i><i class="b-mut" style="flex:58"></i><i class="b-miss" style="flex:120"></i></div>
+        <div class="vmix-legend" aria-hidden="true"><span>7 promoted</span><span>4 review</span><span>58 suppressed</span><span>1,215 dropped</span></div>
+      </div>
+      <div class="float-chip" role="img" aria-label="Zero false positives across the whole scan">
+        <span class="fc-k">Precision</span>
+        <b>0 <em>false positives</em></b>
+        <span class="fc-t">1,284 candidates → 7 you can act on</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="sheet">
+
+  <!-- ============ THE WEDGE ============ -->
+  <section class="section" id="wedge">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow dast">The wedge</p>
+        <h2 class="h2">Precision over volume</h2>
+        <p class="lede">Anyone can flood you with raw scanner output. The hard part is deciding what's real. SteinzDAST puts every candidate, no matter what produced it, through the same deterministic gauntlet, and only reports what survives.</p>
+      </div>
+      <div class="pipeline rich dast reveal" style="margin-bottom:48px">
+        <div class="step ps1">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="8.6" cy="8.6" r="5.2"/><path d="m12.6 12.6 4.6 4.6"/></svg></span>
+          <span class="k">01</span><div class="t">Candidate</div>
+          <div class="d">Tools + native modules surface leads</div>
+        </div>
+        <div class="step ps2">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M10 2.5 3 6v4.5c0 4 3 6.4 7 7.5 4-1.1 7-3.5 7-7.5V6l-7-3.5z"/><path d="m7.2 10 2 2 3.6-4"/></svg></span>
+          <span class="k">02</span><div class="t">Confirm</div>
+          <div class="d">Re-probe for an independent signal</div>
+        </div>
+        <div class="step ps3">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="4.5" y="8.6" width="11" height="8" rx="1.6"/><path d="M6.8 8.6V6a3.2 3.2 0 0 1 6.4 0v2.6"/></svg></span>
+          <span class="k">03</span><div class="t">Gate</div>
+          <div class="d">In scope · right identity · not a dupe</div>
+        </div>
+        <div class="step ps4">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M2.8 13.6a7.2 7.2 0 0 1 14.4 0"/><path d="m10 13.6 3.6-4.6"/><circle cx="10" cy="13.6" r="1.3"/></svg></span>
+          <span class="k">04</span><div class="t">Triage</div>
+          <div class="d">Confidence from the strongest signal</div>
+        </div>
+        <div class="step ps5">
+          <span class="ic" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m4 10.4 3.6 3.6L16 5.6"/></svg></span>
+          <span class="k">05</span><div class="t">Promote</div>
+          <div class="d">Only the proven ones reach your report</div>
+        </div>
+      </div>
+      <div class="stat-strip reveal d1" style="margin-top:56px">
+        <div class="stat s-dast"><div class="n">1.000</div><div class="d">promote-tier precision on our benchmark corpus (DVWA, Juice Shop, VAmPI, DVGA)</div></div>
+        <div class="stat"><div class="n">0</div><div class="d">false positives across hardened negative-control targets</div></div>
+        <div class="stat s-blue"><div class="n">100%</div><div class="d">of promoted findings backed by an independent, reproducible signal</div></div>
+        <div class="stat s-red"><div class="n">40+</div><div class="d">vulnerability classes with deterministic confirmation</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FEATURE ROWS ============ -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+
+      <!-- 1 · Precision by construction -->
+      <div class="feature-row reveal">
+        <div>
+          <p class="eyebrow dast">Precision by construction</p>
+          <h2 class="h2">Nothing gets reported on a hunch</h2>
+          <p>Every candidate has to earn its place. Before anything is promoted, SteinzDAST re-probes for an <strong>independent, reproducible</strong> signal: an out-of-band callback, a tool-confirmed exploit, a cross-identity bypass, a reproduced differential or timing result. A lone pattern match is capped at "needs review," never auto-promoted.</p>
+          <ul class="check-list dast">
+            <li>Confidence banded from the strongest real signal, not a guess</li>
+            <li>Pattern-only hits can reach review, but never promote alone</li>
+            <li>Impact has to be proven, or the severity comes down</li>
+            <li>Fails closed at every step, by design</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="Confidence bands: only out-of-band or tool-confirmed signals clear the promote threshold; pattern matches sit in needs-review; no-signal candidates are dropped">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Confidence · how a candidate is scored</span></div>
+            <div class="bands">
+              <div class="bnd c1"><span class="bl">Confirmed</span><span class="bt"><i class="bf"></i></span><span class="bv"><b>out-of-band / tool</b> → promote</span></div>
+              <div class="bnd c2"><span class="bl">Strong</span><span class="bt"><i class="bf"></i></span><span class="bv">reproduced differential</span></div>
+              <div class="bnd c3"><span class="bl">Weak</span><span class="bt"><i class="bf"></i></span><span class="bv">pattern match → review</span></div>
+              <div class="bnd c4"><span class="bl">Speculative</span><span class="bt"><i class="bf"></i></span><span class="bv">no signal → dropped</span></div>
+            </div>
+            <div class="promote-line"><span>Promote threshold</span><i></i><span>confirmed + reproducible PoC</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · Safe by design -->
+      <div class="feature-row flip reveal">
+        <div>
+          <p class="eyebrow dast">Safe by design</p>
+          <h2 class="h2">It stays inside the lines</h2>
+          <p>SteinzDAST is for targets you're authorized to test, and it behaves like it. The scope gate is enforced in code, not a prompt, and it <strong>defaults to deny</strong>. Credentials are bound to the domains you declare and redacted everywhere, so a redirect or SSRF can never carry a session somewhere it shouldn't go.</p>
+          <ul class="check-list dast">
+            <li>Scope gate enforced in code: default-deny, checked on every request</li>
+            <li>Credential firewall: domain-bound, never off-domain, always redacted</li>
+            <li>No brute-forcing, spraying, scope-evasion, or denial-of-service</li>
+            <li>Destructive paths (logout, reset, delete) excluded from crawling</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel gov" role="img" aria-label="Engagement guardrails: in-scope hosts, excluded paths, and code-enforced safety controls all armed">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Engagement · guardrails</span></div>
+            <div class="gov-sec">
+              <span class="gov-lab">In scope</span>
+              <div class="gov-chips">
+                <span class="gchip">*.example.com</span><span class="gchip">api.example.com</span><span class="gchip more">default-deny elsewhere</span>
+              </div>
+            </div>
+            <div class="gov-sec">
+              <span class="gov-lab">Never requested</span>
+              <div class="gov-chips">
+                <span class="gchip">/logout</span><span class="gchip">/account/delete</span><span class="gchip">/admin/reset</span>
+              </div>
+            </div>
+            <div class="gov-sec">
+              <span class="gov-lab">Enforced in code</span>
+              <div class="gov-toggles">
+                <div class="tgl on"><i></i>Default-deny scope</div>
+                <div class="tgl on"><i></i>Domain-bound creds</div>
+                <div class="tgl on"><i></i>Secret redaction</div>
+                <div class="tgl on"><i></i>No brute-force / DoS</div>
+              </div>
+            </div>
+            <div class="estop" style="color:#ffb37e;border-color:rgba(255,138,61,0.5);background:repeating-linear-gradient(-45deg, rgba(255,138,61,0.08) 0 10px, transparent 10px 20px)">▲ &nbsp;AUTHORIZED TESTING ONLY · SCOPE ENFORCED IN CODE</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · Authenticated & multi-identity -->
+      <div class="feature-row reveal">
+        <div>
+          <p class="eyebrow dast">Authenticated &amp; multi-identity</p>
+          <h2 class="h2">The bugs that live behind login</h2>
+          <p>The vulnerabilities that matter are rarely on the front page. SteinzDAST logs in the way your app actually works, crawls as each identity, then replays every privileged request as lower-privileged and anonymous users, surfacing a broken-access finding only when the resource is <strong>provably gated</strong> and the bypass reproduces. XSS is proven by real execution in a headless browser, not a reflected string.</p>
+          <ul class="check-list dast">
+            <li>Eight auth methods, including multi-step / MFA login, OAuth2 and mTLS</li>
+            <li>Cross-identity IDOR, BOLA and BFLA via authorization replay</li>
+            <li>Broken access reported only when it provably reproduces</li>
+            <li>Headless-browser proof for reflected, stored and DOM XSS</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="Authorization replay matrix: a low-privilege user reaches admin-only order and invoice data: two broken-access findings; the admin console is correctly denied">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Authorization replay · who can reach what</span></div>
+            <div class="amx">
+              <span class="h r">Endpoint</span><span class="h">anon</span><span class="h">user</span><span class="h">admin</span>
+              <span class="rid">GET /api/orders/1042</span><span class="cell deny">denied</span><span class="cell bypass">BYPASS</span><span class="cell ok">ok</span>
+              <span class="rid">GET /api/invoices/88</span><span class="cell deny">denied</span><span class="cell bypass">BYPASS</span><span class="cell ok">ok</span>
+              <span class="rid">GET /admin/users</span><span class="cell deny">denied</span><span class="cell deny">denied</span><span class="cell ok">ok</span>
+            </div>
+            <div class="amx-cap"><b>2 broken-access findings</b>: a standard user reached admin-only data, reproduced under both identities.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 · Chat & voice assistant -->
+      <div class="feature-row flip reveal">
+        <div>
+          <p class="eyebrow dast">Chat &amp; voice</p>
+          <h2 class="h2">Your penetration tester,<br>on call</h2>
+          <p>Brief it like a teammate. Type or just speak: <em>"run a scan on app.example.com,"</em> <em>"search this host for injection,"</em> or ask what an endpoint returned. The assistant plans and runs the work, streams results back, and answers follow-ups. Everything it "confirms" still routes through the same deterministic gate, so nothing it says can promote a finding, widen your scope, or spend past the budget you set.</p>
+          <ul class="check-list dast">
+            <li>Speak or type: <strong>"run the scan on this URL,"</strong> <strong>"find a vuln in this authorized host"</strong></li>
+            <li>It runs the real work: recon, targeted checks, or a full scan</li>
+            <li>Same confirm-and-gate path: the assistant can't promote or widen scope</li>
+            <li>Your scope stays locked for the session; spend is capped</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="Assistant driven by voice and chat: a spoken command starts a scan; the operator then asks it to test a parameter, it runs the deterministic oracle, and the finding is promoted through the gate with no model influence on the verdict">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Assistant · chat or voice</span></div>
+            <div class="voicebar"><span class="mic"></span>“Run a scan on <em>app.example.com</em>”<span class="vstate">listening</span></div>
+            <div class="chat">
+              <div class="bub a"><span class="who">assistant</span>Scanning <code>app.example.com</code> in standard mode. I'll flag anything the confirmers promote.</div>
+              <div class="bub u"><span class="who">you</span>which params on <code>/search</code> look injectable?</div>
+              <div class="bub a"><span class="who">assistant</span><code>q</code> and <code>sort</code> reflect unsanitised. Want me to try SQLi on them?</div>
+              <div class="bub u"><span class="who">you</span>yes, go</div>
+              <div class="bub a"><span class="who">assistant</span>Ran the deterministic oracles. <code>q</code> → SQL injection, out-of-band callback fired.<span class="runline">→ PROMOTED via gate · <b>0 model influence on the verdict</b></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 · Everything in the browser -->
+      <div class="feature-row reveal">
+        <div>
+          <p class="eyebrow dast">Your workspace</p>
+          <h2 class="h2">Everything in the browser</h2>
+          <p>There's no terminal and nothing to install. SteinzDAST lives in a workspace you open in your browser: launch and stop scans, watch findings resolve live with their evidence attached, and download the report when you're done. Drive the whole thing by typing or by voice.</p>
+          <ul class="check-list dast">
+            <li>Runs entirely in the browser, no setup and nothing to install</li>
+            <li>Launch, watch, and stop scans from one workspace</li>
+            <li>Live findings, evidence, and status as the scan runs</li>
+            <li>Export findings as Markdown, JSON or SARIF</li>
+          </ul>
+        </div>
+        <div class="feature-art">
+          <div class="panel" role="img" aria-label="Browser workspace: a standard-mode scan is running against app.example.com, showing 7 confirmed findings live, 4 needing review, and export buttons for markdown, json and sarif">
+            <div class="panel-bar"><i></i><i></i><i></i><span class="ttl">Workspace · app.example.com</span></div>
+            <div class="panel-row">
+              <span class="l"><b>Scan job</b><span class="mono">standard mode · 214 endpoints</span></span>
+              <span class="tag t-dast">RUNNING</span>
+            </div>
+            <div class="panel-row">
+              <span class="l"><b>Confirmed findings</b><span class="mono">live · evidence attached</span></span>
+              <span class="tag t-ok">7 PROMOTED</span>
+            </div>
+            <div class="panel-row">
+              <span class="l"><b>Needs review</b><span class="mono">handed to you</span></span>
+              <span class="tag t-vio">4</span>
+            </div>
+            <div class="panel-row">
+              <span class="l"><b>Export report</b><span class="mono">one click, no false positives</span></span>
+              <span class="tag t-mute">READY</span>
+            </div>
+            <div class="ws-exports" aria-hidden="true"><span>report.md</span><span>report.json</span><span>report.sarif</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ COVERAGE ============ -->
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow dast">Coverage</p>
+        <h2 class="h2">The classes attackers actually use</h2>
+        <p class="lede">Broad detection across the OWASP surface, with each class tied to the signal that confirms it, so what reaches your report is exploitable, not theoretical.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card reveal"><span class="chip-icon dast">⌁</span><h3 class="h3">Injection</h3><p>SQL, NoSQL, command, template (SSTI→RCE), XXE, LDAP and CRLF, confirmed out-of-band or by a reproduced oracle.</p></div>
+        <div class="card reveal d1"><span class="chip-icon dast">⚿</span><h3 class="h3">Broken access control</h3><p>Cross-identity IDOR / BOLA, BFLA, path traversal and forbidden-method bypass via authorization replay.</p></div>
+        <div class="card reveal d2"><span class="chip-icon dast">◈</span><h3 class="h3">Authentication</h3><p>JWT forgery, default credentials, SAML flaws and type-juggling login bypass, with reproducible proof.</p></div>
+        <div class="card reveal"><span class="chip-icon dast">⬢</span><h3 class="h3">Client-side</h3><p>Reflected, stored and DOM XSS proven by real browser execution, plus CORS, CSRF and prototype pollution.</p></div>
+        <div class="card reveal d1"><span class="chip-icon dast">⇄</span><h3 class="h3">API &amp; server-side</h3><p>GraphQL abuse, mass-assignment, SSRF with cloud-metadata variants, deserialization and request smuggling.</p></div>
+        <div class="card reveal d2"><span class="chip-icon dast">∞</span><h3 class="h3">Business logic</h3><p>Race conditions, price and quantity tampering, and workflow abuse, worked by the assistant and handed to a human to judge.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CROSS-SELL ============ -->
+  <section class="section-tight" style="padding-top:0">
+    <div class="wrap">
+      <div class="fusion-band on-ink reveal">
+        <p class="eyebrow">Better together</p>
+        <h2 class="h2">Find the exploit.<br>Then prove the defense.</h2>
+        <p class="lede" style="margin-top:16px">SteinzDAST proves what's exploitable in your web apps. <a href="steinzpurple.html" style="color:#fff;text-decoration:underline" data-name="purple">SteinzPurple</a> proves your detection and response would catch it, and proves the fix with a retest. Two products, one thesis: <strong style="color:#fff">evidence, not assumptions.</strong></p>
+        <div class="fusion-legend">
+          <span style="color:#ffb37e"><i style="background:var(--dast)"></i>SteinzDAST · find what's real</span>
+          <span class="purple"><i></i>SteinzPurple · prove what holds</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="section" id="demo" style="padding-top:0">
+    <div class="wrap">
+      <div class="cta on-ink reveal">
+        <p class="eyebrow dast" style="justify-content:center"><span data-name="dast">SteinzDAST</span> · now onboarding design partners</p>
+        <h2 class="h2">See it find real bugs, and only real bugs</h2>
+        <p>Run SteinzDAST against an authorized target with our team, and watch a wall of scanner noise become a short list you can act on.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary btn-dast" href="mailto:hello@steinzsecurity.com?subject=SteinzDAST%20demo">Book a demo <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="index.html#company">About Steinz Security</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="index.html" style="max-width:170px"><span>Steinz<em>Security</em></span><i></i></a>
+        <p class="blurb">Evidence-driven security products. Find what's exploitable. Prove your defenses hold.</p>
+      </div>
+      <div>
+        <h4>Products</h4>
+        <a href="steinzdast.html" data-name="dast">SteinzDAST</a>
+        <a href="steinzpurple.html" data-name="purple">SteinzPurple</a>
+      </div>
+      <div>
+        <h4>SteinzDAST</h4>
+        <a href="steinzdast.html#wedge">The wedge</a>
+        <a href="steinzdast.html#demo">Book a demo</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="index.html#company">About us</a>
+        <a href="mailto:hello@steinzsecurity.com">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> <span data-company>Steinz Security Private Limited</span></span>
+      <span>FIND IT · PROVE IT</span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
