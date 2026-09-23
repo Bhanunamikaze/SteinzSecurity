@@ -41,8 +41,9 @@
       if (open) nav.classList.add('scrolled');
     });
     links.addEventListener('click', (e) => {
-      if (e.target.tagName === 'A') {
+      if (e.target.closest && e.target.closest('a')) {
         links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
         btn.textContent = 'MENU';
       }
     });

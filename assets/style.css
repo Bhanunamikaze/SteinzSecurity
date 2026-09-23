@@ -168,9 +168,7 @@ h1, h2, h3, .display, .h2, .h3 { overflow-wrap: break-word; }
   transform: translateZ(0);
 }
 .nav.scrolled {
-  background: rgba(18, 13, 31, 0.78);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(18, 13, 31, 0.94);
   border-bottom-color: var(--line-dark);
 }
 .nav-inner {
@@ -354,6 +352,7 @@ h1, h2, h3, .display, .h2, .h3 { overflow-wrap: break-word; }
 
 .section { padding: 96px 0; }
 .section-tight { padding: 72px 0; }
+main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 .section-head { max-width: 720px; margin-bottom: 52px; }
 .section-head .lede { margin-top: 14px; }
 .center { text-align: center; margin-left: auto; margin-right: auto; }
@@ -892,7 +891,7 @@ h1, h2, h3, .display, .h2, .h3 { overflow-wrap: break-word; }
 
 /* ----- agent mesh (Execute) ----- */
 .mesh { width: 100%; height: auto; display: block; }
-.mesh .mlink { stroke: rgba(255,255,255,0.22); stroke-width: 1.5; stroke-dasharray: 5 7; animation: meshflow 1.4s linear infinite; }
+.mesh .mlink { stroke: rgba(255,255,255,0.22); stroke-width: 1.5; stroke-dasharray: 5 7; animation: meshflow 2.4s linear infinite; }
 .mesh .mlink.soft { stroke: rgba(255,255,255,0.13); }
 @keyframes meshflow { to { stroke-dashoffset: -24; } }
 .mesh .mnode { fill: rgba(255,255,255,0.045); stroke: rgba(255,255,255,0.13); }
