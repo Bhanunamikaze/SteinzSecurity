@@ -7,3 +7,4 @@ exclude:
   - seo-audits
   - audit-output
   - .artifacts
+  - tools

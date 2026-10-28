@@ -6,6 +6,7 @@ seo-audit-screenshots/
 seo-audits/
 audit-output/
 .artifacts/
+tools/
 
 # Local credentials, dependencies, and editor state.
 .env
