@@ -738,6 +738,8 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 @media (max-width: 720px) {
   body { font-size: 15.5px; }
   .section { padding: 68px 0; }
+  /* Keep primary content visible at first paint on mobile. */
+  .hero-copy > *, .hero-art { opacity: 1; transform: none; animation: none; }
   .hero { padding: 130px 0 110px; }
   .compare { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
   .grid-3, .grid-2 { grid-template-columns: 1fr; }

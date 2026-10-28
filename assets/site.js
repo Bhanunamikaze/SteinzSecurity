@@ -27,8 +27,12 @@
   let navTick = false;
   const setNav = () => { nav.classList.toggle('scrolled', window.scrollY > 24); navTick = false; };
   const onScroll = () => { if (!navTick) { navTick = true; requestAnimationFrame(setNav); } };
-  setNav();
+  // Let the first frame paint before reading scroll position during startup.
+  requestAnimationFrame(() => requestAnimationFrame(setNav));
   window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) requestAnimationFrame(() => requestAnimationFrame(setNav));
+  });
 
   // Mobile menu
   const btn = document.querySelector('.menu-btn');
