@@ -1,3 +1,6 @@
+---
+layout: null
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -402,41 +405,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 
 </main>
 
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <a class="logo" href="../../" style="max-width:170px"><span>Steinz<em>Security</em></span><i></i></a>
-        <p class="blurb">Evidence-driven security products. Find what's exploitable. Prove your defenses hold.</p>
-      </div>
-      <div>
-        <h3>Products</h3>
-        <a href="../steiner/">Steiner</a>
-        <a href="../steinzpurple/">SteinzPurple</a>
-      </div>
-      <div>
-        <h3>Steiner</h3>
-        <a href="#assistant">Run it your way</a>
-        <a href="#wedge">Continuous validation</a>
-        <a href="#demo">Request a demo</a>
-      </div>
-      <div>
-        <h3>Company</h3>
-        <a href="../../#company">About us</a>
-        <!--email_off--><a href="mailto:contact@steinzsecurity.com">Contact</a><!--/email_off-->
-      </div>
-    </div>
-    <div class="company-disclosure" style="margin-top:32px;font-size:0.78rem;line-height:1.7;overflow-wrap:anywhere">
-      <strong style="color:#e9e5f6">Steinz Security Private Limited</strong><br>
-      Queries and grievances: <!--email_off--><a href="mailto:contact@steinzsecurity.com">contact@steinzsecurity.com</a><!--/email_off-->
-    </div>
-    <nav aria-label="Legal and company information" style="display:flex;flex-wrap:wrap;column-gap:22px;row-gap:4px;margin-top:24px"><a href="/privacy/">Privacy Policy</a><a href="/terms/">Terms and Conditions</a><a href="/disclaimer/">Disclaimer</a><a href="/contact/">Contact Us</a><a href="/copyright/">Copyright Reporting</a></nav>
-    <div class="footer-bottom">
-      <span>© 2026 Steinz Security Private Limited</span>
-      <span>FIND IT · PROVE IT</span>
-    </div>
-  </div>
-</footer>
+{% include footer.html %}
 <script>
 window.startSteinerAssistant = function () {
   if (document.readyState === 'loading' || document.getElementById('assistant-styles').media !== 'all' || document.getElementById('steiner-shared-styles').media !== 'all' || typeof window.initSteinerAssistant !== 'function' || window.steinerAssistantStarted) return;
