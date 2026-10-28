@@ -4,16 +4,24 @@ window.initSteinerAssistant = function(root) {
   const events = new AbortController();
   const byId = id => root.querySelector('#' + id);
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  let paused = reduced.matches, hovering = false, focused = false, visible = false;
-  let elapsed = 0, last = performance.now(), lastExample = 0;
-  let progressAnimation, contentAnimation, measuring = false, layoutWidth = 0;
+  let paused = reduced.matches, focused = false, visible = false;
+  let lastExample = 0;
+  let progressAnimation, contentAnimations = [], measuring = false, layoutWidth = 0;
   function animateContent() {
-    if (reduced.matches || measuring) return;
-    if (contentAnimation) contentAnimation.cancel();
-    contentAnimation = root.querySelector('.workspace-cols').animate(
-      [{opacity:.35,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],
-      {duration:240,easing:'cubic-bezier(.2,.7,.2,1)'}
-    );
+    if (measuring) return;
+    contentAnimations.forEach(a => a.cancel());
+    contentAnimations = [];
+    if (reduced.matches) return;
+    const reveal = (el, delay, duration = 240) => {
+      contentAnimations.push(el.animate(
+        [{opacity:0,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],
+        {duration,delay,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'}
+      ));
+    };
+    reveal(root.querySelector('.bubble.user'), 0, 180);
+    reveal(root.querySelector('.bubble.steiner'), 100, 260);
+    root.querySelectorAll('.run-steps li').forEach((el,i) => reveal(el, 220 + i*110));
+    reveal(byId('result'), 680, 280);
   }
 const helper=(label,user,agent,steps,result,code,options={})=>({label,user,agent,steps,result,code,attachment:options.attachment||'',agentNote:options.agentNote||'',resultTitle:options.resultTitle||'',statusType:options.type||'verified',state:options.state||'EVIDENCE CAPTURED',footer:options.footer||['SCOPED','SAME ENGAGEMENT','RETEST HISTORY'],source:options.source||'',role:options.role||'STEINER · EXECUTION UPDATE',hint:options.hint||'Operator-approved tests stay within scope. Findings require independent evidence before reporting.'});
 const scenarios={
@@ -41,32 +49,37 @@ helper('Troubleshoot a failed retest','We patched ST-042. Why is the retest stil
 helper('Drive the UI by voice','Voice command: “Open the finding and show the replay.”','The assistant prepares a workspace navigation action and opens the linked evidence record in the illustrative interface.',['✓ Voice intent interpreted','✓ Finding ST-042 resolved in workspace','✓ Replay record located','✓ Evidence view action prepared'],'VOICE ACTION · PREVIEW','action=open_replay  •  finding=ST-042',{attachment:'spoken workflow illustration',type:'info',state:'WORKSPACE ACTION',role:'STEINER · VOICE ACTION',source:'PARTNER / VOICE NAVIGATION',resultTitle:'Voice-driven evidence navigation',hint:'Voice is an interface for the hacker partner, not a separate pentesting mode.'})]
 };
 const modes={off:['AI-OFF RELEASE SCAN','RUN CONFIGURATION','ENGINE · AI DISABLED'],on:['AI-ASSISTED SCAN','INVESTIGATION CHAT','AI ON · CAP ENFORCED'],swarm:['AGENT SWARM','COORDINATION PREVIEW','PLANNED · NOT GA'],focused:['FOCUSED TEST','TEST BRIEF','TARGETED TEST · VALIDATION'],partner:['HACKER PARTNER','CONVERSATION','CHAT OR VOICE']};let currentMode='partner',currentExample=0;const voiceCommands=['“Set up an authenticated scan with Alice and Bob.”','“Check the exports API for cross-account access.”','“Explain exactly why finding ST-042 is proven.”','“Show me why the previous retest failed.”','“Open Request Lab and replay this request.”','“Run the focused access-control test.”'];let voiceIdx=0;
-function setVoice(){byId('voice-text').textContent=voiceCommands[voiceIdx]}byId('voice-cycle').addEventListener('click',()=>{voiceIdx=(voiceIdx+1)%voiceCommands.length;setVoice()});
-function chooseMode(mode){currentMode=mode;currentExample=0;root.querySelectorAll('[data-mode]').forEach(el=>{const selected=el.dataset.mode===mode;el.setAttribute('aria-pressed',String(selected));el.setAttribute('aria-selected',String(selected));el.tabIndex=selected?0:-1});byId('assistant-mode-panel').setAttribute('aria-labelledby','assistant-tab-'+mode);byId('console-product').textContent='STEINER / '+modes[mode][0];byId('left-title').textContent=modes[mode][1];byId('workspace-loc').textContent=`${modes[mode][2]} / APP.EXAMPLE.COM / ENGAGEMENT-12`;const list=byId('example-list');list.replaceChildren();scenarios[mode].forEach((s,i)=>{let b=document.createElement('button');b.className='example-btn';b.type='button';b.textContent=s.label;b.setAttribute('aria-pressed',String(i===0));b.addEventListener('click',()=>{renderExample(i);restartClock()});list.append(b)});renderExample(0)}
-function renderExample(i){animateContent();currentExample=i;const s=scenarios[currentMode][i];byId('example-list').querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-pressed',String(k===i)));byId('user-title').textContent=currentMode==='off'?'OPERATOR · AUTOMATION':currentMode==='partner'?'YOU · CHAT / VOICE':currentMode==='swarm'?'OPERATOR · ASSESSMENT':currentMode==='focused'?'OPERATOR · TEST TARGET':'OPERATOR · INVESTIGATION';byId('user-message').textContent=s.user;byId('user-attachment').textContent=s.attachment||'scope: staging.example.com';byId('agent-title').textContent=s.role;byId('agent-message').textContent=s.agent;byId('agent-addendum').textContent=s.source;byId('operator-hint').textContent=s.hint;byId('workspace-state').textContent=s.state;byId('run-title').textContent='EXECUTION / '+s.source;byId('run-meta').textContent=s.steps.length+' STEPS';let steps=byId('run-steps');steps.replaceChildren();s.steps.forEach(t=>{const li=document.createElement('li');const b=document.createElement('span');const content=document.createElement('span');b.className='bullet'+(t.startsWith('○')?' pending':'');b.textContent=t.startsWith('○')?'○':'✓';content.className='text';content.textContent=t.replace(/^[✓○]\s*/,'');li.append(b,content);steps.append(li)});byId('result').className='result'+(s.statusType==='pending'?' pending':s.statusType==='info'?' info':'');byId('result-title').textContent=s.resultTitle||'Finding evidence';byId('result-status').textContent=s.result;byId('result-code').textContent=s.code;byId('result-foot').replaceChildren();s.footer.forEach(t=>{let sp=document.createElement('span');sp.textContent=t;byId('result-foot').append(sp)})}
+function setVoice(){byId('voice-text').textContent=voiceCommands[voiceIdx]}
+const voiceWorkflows=[['partner',0],['partner',1],['partner',3],['partner',4],['partner',5],['focused',0]];
+byId('voice-cycle').addEventListener('click',()=>{
+  voiceIdx=(voiceIdx+1)%voiceCommands.length;
+  const [mode,example]=voiceWorkflows[voiceIdx];
+  chooseMode(mode);renderExample(example);setVoice();restartClock();
+  if(!reduced.matches) byId('voice-text').animate([{opacity:.25},{opacity:1}],{duration:220});
+});
+function chooseMode(mode){currentMode=mode;currentExample=0;root.querySelectorAll('[data-mode]').forEach(el=>{const selected=el.dataset.mode===mode;el.setAttribute('aria-pressed',String(selected));el.setAttribute('aria-selected',String(selected));el.tabIndex=selected?0:-1;const cue=el.querySelector('.mode-cta');if(cue)cue.firstChild.textContent=selected?'Showing demo ':'View demo '});byId('assistant-mode-panel').setAttribute('aria-labelledby','assistant-tab-'+mode);byId('console-product').textContent='STEINER / '+modes[mode][0];byId('left-title').textContent=modes[mode][1];byId('workspace-loc').textContent=`${modes[mode][2]} / APP.EXAMPLE.COM / ENGAGEMENT-12`;const list=byId('example-list');list.replaceChildren();scenarios[mode].forEach((s,i)=>{let b=document.createElement('button');b.className='example-btn';b.type='button';b.textContent=s.label;b.setAttribute('aria-pressed',String(i===0));b.addEventListener('click',()=>{renderExample(i);restartClock()});list.append(b)});renderExample(0)}
+function renderExample(i){currentExample=i;const s=scenarios[currentMode][i];byId('example-list').querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-pressed',String(k===i)));byId('user-title').textContent=currentMode==='off'?'OPERATOR · AUTOMATION':currentMode==='partner'?'YOU · CHAT / VOICE':currentMode==='swarm'?'OPERATOR · ASSESSMENT':currentMode==='focused'?'OPERATOR · TEST TARGET':'OPERATOR · INVESTIGATION';byId('user-message').textContent=s.user;byId('user-attachment').textContent=s.attachment||'scope: staging.example.com';byId('agent-title').textContent=s.role;byId('agent-message').textContent=s.agent;byId('agent-addendum').textContent=s.source;byId('operator-hint').textContent=s.hint;byId('workspace-state').textContent=s.state;byId('run-title').textContent='EXECUTION / '+s.source;byId('run-meta').textContent=s.steps.length+' STEPS';let steps=byId('run-steps');steps.replaceChildren();s.steps.forEach(t=>{const li=document.createElement('li');const b=document.createElement('span');const content=document.createElement('span');b.className='bullet'+(t.startsWith('○')?' pending':'');b.textContent=t.startsWith('○')?'○':'✓';content.className='text';content.textContent=t.replace(/^[✓○]\s*/,'');li.append(b,content);steps.append(li)});byId('result').className='result'+(s.statusType==='pending'?' pending':s.statusType==='info'?' info':'');byId('result-title').textContent=s.resultTitle||'Finding evidence';byId('result-status').textContent=s.result;byId('result-code').textContent=s.code;byId('result-foot').replaceChildren();s.footer.forEach(t=>{let sp=document.createElement('span');sp.textContent=t;byId('result-foot').append(sp)});animateContent()}
 root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>{chooseMode(el.dataset.mode);restartClock()}));
 
   const order = ['off','on','swarm','focused','partner'];
   const toggle = root.querySelector('.rotation-toggle');
-  const progress = root.querySelector('.rotation-progress i');
-  function isRunning() {return !paused && !hovering && !focused && visible && !document.hidden;}
+  const progress = root.querySelector('.cycle-progress');
+  function isRunning() {return !paused && !focused && visible && !document.hidden;}
   function restartClock() {
-    elapsed = 0; lastExample = 0; last = performance.now();
+    lastExample = 0;
     if (progressAnimation) progressAnimation.cancel();
-    progressAnimation = progress.animate([{transform:'scaleX(0)'},{transform:'scaleX(1)'}],{duration:6000,fill:'forwards'});
+    progressAnimation = progress.animate([{strokeDashoffset:'43.983'},{strokeDashoffset:'0'}],{duration:6000,fill:'forwards',easing:'linear'});
     syncRotation();
   }
   function syncRotation() {
     root.querySelector('.workspace').setAttribute('aria-live',isRunning() ? 'off' : 'polite');
-    toggle.textContent = paused ? 'Play demo' : 'Pause autoplay';
+    toggle.querySelector('.rotation-label').textContent = paused ? 'Play demo' : 'Pause autoplay';
+    root.classList.toggle('is-demo-hidden',document.hidden || !visible);
     toggle.setAttribute('aria-pressed',String(paused));
     toggle.setAttribute('aria-label',paused ? 'Start automatic tab rotation' : 'Pause automatic tab rotation');
     if(progressAnimation) {if(isRunning()) progressAnimation.play(); else progressAnimation.pause();}
-    last = performance.now();
   }
   toggle.addEventListener('click',()=>{paused=!paused;syncRotation()}, {signal:events.signal});
-  root.addEventListener('pointerenter',()=>{hovering=true;syncRotation()}, {signal:events.signal});
-  root.addEventListener('pointerleave',()=>{hovering=false;syncRotation()}, {signal:events.signal});
   root.addEventListener('focusin',e=>{focused=e.target.matches(':focus-visible');syncRotation()}, {signal:events.signal});
   root.addEventListener('focusout',e=>{if(!root.contains(e.relatedTarget)){focused=false;syncRotation()}}, {signal:events.signal});
   document.addEventListener('visibilitychange',syncRotation,{signal:events.signal});
@@ -77,7 +90,12 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
     let next;if(e.key==='ArrowRight')next=(active+1)%tabs.length;else if(e.key==='ArrowLeft')next=(active+tabs.length-1)%tabs.length;else if(e.key==='Home')next=0;else if(e.key==='End')next=tabs.length-1;else return;
     e.preventDefault();tabs[next].click();tabs[next].focus();
   },{signal:events.signal});
-  const observer=new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;syncRotation()},{threshold:0});
+  const visibleTargets = new Set();
+  const observer=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{if(entry.isIntersecting)visibleTargets.add(entry.target);else visibleTargets.delete(entry.target)});
+    visible=visibleTargets.size>0;syncRotation();
+  },{threshold:0});
+  observer.observe(root.querySelector('.mode-grid'));
   observer.observe(root.querySelector('.workspace'));
   // Reserve the largest example at this width so tab changes do not move the page.
   function reserveLayout() {
@@ -119,11 +137,10 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
   resizeObserver.observe(root.querySelector('.wrap'));
   document.fonts.ready.then(()=>{if(!events.signal.aborted) reserveLayout()});
   const timer=setInterval(()=>{
-    const now=performance.now(),delta=Math.min(now-last,250);last=now;
     if(!isRunning())return;
-    elapsed+=delta;
+    const elapsed = progressAnimation ? Number(progressAnimation.currentTime) || 0 : 0;
     if(elapsed>=6000){chooseMode(order[(order.indexOf(currentMode)+1)%order.length]);voiceIdx=(voiceIdx+1)%voiceCommands.length;setVoice();restartClock();}
     else if(elapsed>=3000 && lastExample===0){lastExample=1;renderExample((currentExample+1)%scenarios[currentMode].length);}
   },100);
-  return ()=>{events.abort();observer.disconnect();resizeObserver.disconnect();clearInterval(timer);if(progressAnimation)progressAnimation.cancel();if(contentAnimation)contentAnimation.cancel();};
+  return ()=>{events.abort();observer.disconnect();resizeObserver.disconnect();clearInterval(timer);if(progressAnimation)progressAnimation.cancel();contentAnimations.forEach(a=>a.cancel());};
 };

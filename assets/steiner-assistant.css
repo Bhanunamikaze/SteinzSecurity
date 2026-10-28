@@ -161,8 +161,6 @@
 #assistant .mode-card[aria-selected=true]{box-shadow:inset 0 0 0 1px #ffc49d,0 12px 28px -18px rgba(232,111,31,.45)}
 #assistant .example-btn[aria-pressed=true]{box-shadow:0 8px 24px -12px rgba(255,138,61,.8)}
 #assistant .workspace{position:relative}
-#assistant .rotation-progress{position:absolute;top:0;left:0;right:0;height:2px;overflow:hidden;z-index:1;pointer-events:none}
-#assistant .rotation-progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--dast),#ffc688);transform-origin:left;box-shadow:0 0 9px rgba(255,138,61,.6)}
 #assistant .rotation-toggle{font:500 10px var(--mono);color:#ffd9b8;padding:7px 9px;background:rgba(255,138,61,.08);border:1px solid rgba(255,138,61,.28);border-radius:6px}
 #assistant .rotation-toggle:hover{background:rgba(255,138,61,.2)}
 #assistant .live-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#3dd69c;box-shadow:0 0 0 4px #3dd69c1a}
@@ -177,3 +175,58 @@
 
 #assistant{font-size:16px}
 #assistant .wrap{max-width:none;padding:0}
+
+/* Listening motion and a compact cycle indicator replace the workspace progress line. */
+#assistant .rotation-toggle{display:inline-flex;align-items:center;gap:7px;min-height:31px}
+#assistant .cycle-ring{width:17px;height:17px;flex:none;transform:rotate(-90deg);fill:none;stroke-width:1.7}
+#assistant .cycle-track{stroke:rgba(255,183,141,.18)}
+#assistant .cycle-progress{stroke:#ffb78d;stroke-linecap:round;stroke-dasharray:43.983;stroke-dashoffset:43.983}
+#assistant .voicebar .voice-orb{position:relative;isolation:isolate;flex:none;width:34px;height:34px;background:rgba(255,138,61,.17);border:1px solid rgba(255,166,105,.5);box-shadow:0 0 20px -8px rgba(255,138,61,.65)}
+#assistant .voice-orb svg{width:19px;height:19px;fill:none;stroke:#ffc398;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;animation:assistant-mic-breathe 1.8s ease-in-out infinite}
+#assistant .voice-orb::after{content:'';position:absolute;inset:-5px;border:1px solid rgba(255,166,105,.4);border-radius:50%;pointer-events:none;animation:assistant-listen-ring 1.8s ease-out infinite}
+#assistant .voice-orb:hover{background:rgba(255,138,61,.3);border-color:#ffc398}
+#assistant .voice-orb:active{transform:scale(.95)}
+#assistant .voice-wave{display:flex;align-items:center;justify-content:center;gap:3px;width:31px;height:26px;flex:none;color:#ffb37e}
+#assistant .voice-wave i{display:block;width:3px;height:18px;border-radius:4px;background:currentColor;transform-origin:center;animation:assistant-voice-wave 1s ease-in-out infinite}
+#assistant .voice-wave i:nth-child(2){height:23px;animation-delay:-.65s;animation-duration:1.25s}
+#assistant .voice-wave i:nth-child(3){height:26px;animation-delay:-.35s;animation-duration:1.1s}
+#assistant .voice-wave i:nth-child(4){height:21px;animation-delay:-.8s;animation-duration:1.3s}
+#assistant .voice-wave i:nth-child(5){height:16px;animation-delay:-.2s;animation-duration:.95s}
+#assistant .voicebar .voice-state{display:flex;align-items:center;gap:7px}
+#assistant .voice-state::before{content:'';width:5px;height:5px;border-radius:50%;background:#7bdaa8;box-shadow:0 0 10px rgba(123,218,168,.4);animation:assistant-mic-breathe 1.8s ease-in-out infinite}
+#assistant .run-state .live-dot{animation:assistant-mic-breathe 2.2s ease-in-out infinite}
+#assistant.is-demo-hidden .voice-orb svg,#assistant.is-demo-hidden .voice-orb::after,#assistant.is-demo-hidden .voice-wave i{animation-play-state:paused}
+@keyframes assistant-voice-wave{0%,100%{transform:scaleY(.3);opacity:.6}50%{transform:scaleY(1);opacity:1}}
+@keyframes assistant-listen-ring{0%{transform:scale(.8);opacity:.65}85%,100%{transform:scale(1.35);opacity:0}}
+@keyframes assistant-mic-breathe{0%,100%{opacity:.6}50%{opacity:1}}
+@media(max-width:600px){#assistant .voicebar{column-gap:10px}#assistant .voice-wave{width:25px;gap:2px}#assistant .voicebar strong{flex:1}#assistant .voicebar em{flex-basis:100%;padding-left:4px}#assistant .voicebar .voice-state{display:none}}
+@media(prefers-reduced-motion:reduce){#assistant .voice-orb svg,#assistant .voice-orb::after,#assistant .voice-wave i,#assistant .voice-state::before,#assistant .run-state .live-dot{animation:none!important}#assistant .voice-wave i{transform:scaleY(.6)}}
+
+/* Visible tab affordance and the continuous warm sweep used by the product demos. */
+#assistant .mode-hint{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px;font:500 10px var(--mono);letter-spacing:.6px;color:#8a6b66}
+#assistant .mode-hint>span:last-child{display:flex;align-items:center;gap:7px;letter-spacing:0;color:#a65d2a}
+#assistant .mode-hint i{width:5px;height:5px;display:inline-block;border-radius:50%;background:#e89a3c;box-shadow:0 0 9px rgba(232,154,60,.6)}
+#assistant .mode-card{isolation:isolate}
+#assistant .mode-card>*{position:relative;z-index:1}
+#assistant .mode-card .status{position:absolute}
+#assistant .mode-card .mode-cta{margin-top:auto;padding-top:8px;display:flex;align-items:center;justify-content:space-between;color:#b15e28;font:500 10px var(--mono);letter-spacing:.2px}
+#assistant .mode-card .mode-cta b{font:500 16px var(--font);color:inherit}
+#assistant .mode-card:hover .mode-cta{color:#8b3d13}
+#assistant .mode-card[aria-selected=true]{background:#fff7ed;border-color:#f4a13f;box-shadow:inset 0 0 0 1px rgba(255,196,113,.55),0 6px 25px -12px rgba(236,151,47,.58)}
+#assistant .mode-card::after{z-index:0;inset:-35% -20%;background:linear-gradient(110deg,transparent 20%,rgba(255,195,99,.03) 32%,rgba(255,193,82,.28) 49%,rgba(255,213,153,.08) 62%,transparent 78%);transform:translateX(-115%)}
+#assistant .mode-card[aria-selected=true]::after{animation:assistant-golden-sweep 4s ease-in-out infinite}
+#assistant .console{overflow:hidden;isolation:isolate}
+#assistant .console>*{position:relative;z-index:1}
+#assistant .console::before{content:'';position:absolute;left:-25%;top:-20%;width:70%;height:140%;background:radial-gradient(ellipse at center,rgba(255,182,64,.2) 0%,rgba(255,156,65,.11) 24%,rgba(255,174,74,.035) 49%,transparent 69%);filter:blur(26px);pointer-events:none;z-index:0;animation:assistant-golden-ambient 11s ease-in-out infinite alternate}
+#assistant.is-demo-hidden .console::before,#assistant.is-demo-hidden .mode-card::after{animation-play-state:paused}
+@keyframes assistant-golden-sweep{0%{transform:translateX(-115%)}70%,100%{transform:translateX(115%)}}
+@keyframes assistant-golden-ambient{from{transform:translateX(-12%) translateY(-4%)}to{transform:translateX(145%) translateY(8%)}}
+@media(max-width:600px){#assistant .mode-hint{font-size:9px;gap:7px}#assistant .mode-card .mode-cta{font-size:9px}}
+@media(prefers-reduced-motion:reduce){#assistant .console::before,#assistant .mode-card::after{animation:none!important}#assistant .mode-card[aria-selected=true]::after{transform:translateX(0);opacity:.5}}
+#assistant .voicebar{position:relative;overflow:hidden;isolation:isolate}
+#assistant .voicebar>*{position:relative;z-index:1}
+#assistant .voicebar::before{content:'';position:absolute;inset:-80% auto -80% -45%;width:55%;background:radial-gradient(ellipse,rgba(255,187,88,.23),rgba(255,158,62,.07) 45%,transparent 70%);pointer-events:none;animation:assistant-voice-glow 7s ease-in-out infinite alternate;z-index:0}
+@keyframes assistant-voice-glow{from{transform:translateX(0)}to{transform:translateX(265%)}}
+#assistant.is-demo-hidden .voicebar::before{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){#assistant .voicebar::before{animation:none!important}}
+#assistant .session-badges .rotation-label{font:inherit;color:inherit;background:none;border:0;padding:0;border-radius:0}
