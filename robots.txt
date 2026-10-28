@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://steinzsecurity.com/sitemap.xml
+Sitemap: https://www.steinzsecurity.com/sitemap.xml

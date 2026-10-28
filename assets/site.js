@@ -2,21 +2,15 @@
 
 (function () {
   // ---- Brand variables ---------------------------------------------------
-  // Product names are internal working names. To rebrand a product, change
-  // its suffix here - every element carrying data-name / data-mark (nav,
-  // heroes, product cards, headings, footers) updates from this one place.
-  // Full product name = "Steinz" + suffix. Page <title>/meta stay hardcoded.
+  // Product names used by shared navigation and footer links.
+  // Page titles, metadata, and static copy are set in the HTML files.
   const BRAND = {
     company: 'Steinz Security Private Limited',
-    suffixes: { dast: 'DAST', purple: 'Purple' },
+    names: { dast: 'Steiner', purple: 'SteinzPurple' },
   };
-  document.querySelectorAll('[data-mark]').forEach((el) => {
-    const s = BRAND.suffixes[el.getAttribute('data-mark')];
-    if (s) el.innerHTML = 'Steinz<em>' + s + '</em>';
-  });
   document.querySelectorAll('[data-name]').forEach((el) => {
-    const s = BRAND.suffixes[el.getAttribute('data-name')];
-    if (s) el.textContent = 'Steinz' + s;
+    const name = BRAND.names[el.getAttribute('data-name')];
+    if (name) el.textContent = name;
   });
   document.querySelectorAll('[data-company]').forEach((el) => {
     el.textContent = BRAND.company;
