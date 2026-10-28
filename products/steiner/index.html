@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../../assets/steiner-assistant.css">
+<script src="../../assets/steiner-assistant.js"></script>
 <script src="../../assets/support.js"></script>
 </head>
 <body>
@@ -157,103 +159,21 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
   </section>
   </sc-if>
 
-  <section class="section" id="assistant" style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <p class="eyebrow dast">Run it your way · Next-gen hacking assistant</p>
-        <h2 class="h2">Full scans on autopilot.<br>Or hack alongside it.</h2>
-        <p class="lede" style="margin-left:auto;margin-right:auto">One engine, three ways to drive it. Run complete end-to-end penetration tests unattended, with AI switched on or off. Or open the assistant, point it at a request and tell it your hunch. Everything lands in the same findings, the same proof standard, the same retest cycle.</p>
-      </div>
-      <div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-bottom:28px">
-        <div style="padding:22px 24px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)"><div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--dast-deep)">01 · Autonomous scan</div><div style="font-family:var(--font-display);font-weight:650;font-size:1.1rem;margin:8px 0 6px;letter-spacing:-0.01em">End-to-end, no AI needed</div><div style="color:var(--muted);font-size:0.92rem;line-height:1.5">Discover, attack, prove, report and retest with the deterministic engine alone. Fully repeatable, zero model spend, runs on every deploy.</div></div>
-        <div style="padding:22px 24px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)"><div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--dast-deep)">02 · AI-assisted scan</div><div style="font-family:var(--font-display);font-weight:650;font-size:1.1rem;margin:8px 0 6px;letter-spacing:-0.01em">Same scan, AI on</div><div style="color:var(--muted);font-size:0.92rem;line-height:1.5">Flip AI on and agents choose attacks, chase the hard leads and refine reach. The engine still proves every finding; AI stays under a hard cap.</div></div>
-        <div style="padding:22px 24px;border-radius:16px;background:var(--dast-soft);border:1px solid #ffd9b8;box-shadow:var(--shadow)"><div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--dast-deep)">03 · Next-gen hacking assistant</div><div style="font-family:var(--font-display);font-weight:650;font-size:1.1rem;margin:8px 0 6px;letter-spacing:-0.01em">Hands-on, by text or voice</div><div style="color:var(--muted);font-size:0.92rem;line-height:1.5">A pentester on call. Paste a request or just say “I think SQLi might be possible here” and it runs the full attack and reports back with proof. Every action in the app can be driven by voice, end to end, without touching the keyboard.</div></div>
-      </div>
-      <div class="reveal" style="position:relative;background:var(--ink);color:#fff;border-radius:28px;padding:40px 48px 44px;overflow:hidden;background-image:radial-gradient(760px 380px at 10% 0%, rgba(255,138,61,0.22), transparent 65%),radial-gradient(640px 360px at 95% 100%, rgba(123,91,255,0.28), transparent 65%)">
-
-        <div style="display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:18px">
-          <span style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#ffb37e;margin-right:6px">Assistant · try asking</span>
-          <button onClick="{{ pick0 }}" style="{{ chip0 }}">“I think SQLi might be possible here, can you check?”</button>
-          <button onClick="{{ pick1 }}" style="{{ chip1 }}">“Can bob read alice’s exports?”</button>
-          <button onClick="{{ pick2 }}" style="{{ chip2 }}">“Is this JWT forgeable?”</button>
-        </div>
-
-        <div class="voicebar" aria-live="polite"><span class="mic" aria-hidden="true"></span><span style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#ffb37e;flex:none">Voice · try saying</span><span style="min-width:0"><em>{{ voiceCmd }}</em></span><span class="vstate">{{ voiceState }}</span></div>
-        <div style="border-radius:20px;border:1px solid rgba(255,255,255,0.1);background:var(--ink-2);box-shadow:0 40px 90px -40px rgba(0,0,0,0.8);overflow:hidden">
-          <div style="position:relative;display:flex;align-items:center;gap:8px;padding:13px 20px;border-bottom:1px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02)">
-            <i style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.14)"></i><i style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.14)"></i><i style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.14)"></i>
-            <span style="margin-left:8px;font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-dark)">Assistant · app.example.com</span>
-            <span style="margin-left:auto;display:flex;gap:6px;flex-wrap:wrap"><span class="tag t-ok" style="animation:softblink 2.6s ease-in-out infinite">● SESSION · ALICE</span></span>
-            <i aria-hidden="true" style="{{ progressStyle }}"></i>
-          </div>
-          <sc-if value="{{ isS0 }}" hint-placeholder-val="{{ true }}">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))">
-            <div style="padding:28px;display:flex;flex-direction:column;gap:14px;border-right:1px solid rgba(255,255,255,0.07)">
-              <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-dark)">Conversation</div>
-              <div class="chat" style="gap:14px"><div class="bub u" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 0.3s both"><span class="who">you</span>I think SQLi might be possible in this request. Can you check?<div style="margin-top:10px;padding:10px 12px;border-radius:9px;background:rgba(0,0,0,0.3);font-family:var(--font-mono);font-size:0.7rem;line-height:1.7;color:#e9e5f6;white-space:nowrap;overflow-x:auto">POST /api/reports/export<br>Cookie: session=•••••<br>{"from":"2026-01-01","sort":"date"}</div></div><div class="bub a" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 1.4s both"><span class="who">assistant</span>On it. Fingerprinting the backend, then hitting <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">from</code>, <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">sort</code>, the headers and the cookie with the SQLi oracles. Holding your session as alice while I work.</div><div class="bub a" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 6.2s both"><span class="who">assistant</span>Confirmed: <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">sort</code> is injectable (ORDER BY, PostgreSQL). <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">from</code> is clean. Proof and replay are on the right.<span class="runline">→ PROVEN by the engine · <b>added to the retest cycle</b></span></div></div>
-            </div>
-            <div style="padding:28px;display:flex;flex-direction:column;gap:22px;background:rgba(0,0,0,0.18)">
-              <div>
-                <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:14px">Live run</div>
-                <div style="display:flex;flex-direction:column;gap:12px"><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 1.6s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">fingerprinted backend · PostgreSQL 15 behind nginx</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 2.5s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">tested <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">from</code>, <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">sort</code>, headers, cookie · 6 encodings each</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 3.4s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6"><code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">sort</code> · boolean differential reproduced 3/3</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 4.3s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6"><code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">sort</code> · time-based delay consistent 5/5</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 5.2s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6"><code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">from</code> · no signal on any oracle · ruled out</span></div></div>
-              </div>
-              <div data-a="" style="border-radius:14px;padding:16px 18px;background:rgba(46,189,133,0.08);border:1px solid rgba(46,189,133,0.35);animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 6.4s both">
-                  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-weight:600;color:#fff;font-size:0.92rem">SQL injection · sort</span><span class="tag t-ok">PROVEN · HIGH</span></div>
-                  <div style="margin-top:12px;padding:11px 13px;border-radius:9px;background:rgba(0,0,0,0.3);font-family:var(--font-mono);font-size:0.7rem;line-height:1.75;color:#cfc8e8;white-space:nowrap;overflow-x:auto">"sort":"<span style="color:#ffc99e">date,(SELECT CASE WHEN (1=1) THEN pg_sleep(5) END)</span>"<br>→ 200 · <span style="color:#ff9c9c">5.01s</span> vs baseline <span style="color:#5fe0ae">0.21s</span></div>
-                  <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag t-mute">REPLAY</span><span class="tag t-mute">EVIDENCE.JSON</span><span class="tag t-dast">RETEST · C5</span></div>
-                </div>
-            </div>
-          </div>
-        </sc-if>
-          <sc-if value="{{ isS1 }}">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))">
-            <div style="padding:28px;display:flex;flex-direction:column;gap:14px;border-right:1px solid rgba(255,255,255,0.07)">
-              <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-dark)">Conversation</div>
-              <div class="chat" style="gap:14px"><div class="bub u" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 0.3s both"><span class="who">you</span>Can bob read alice's exports?<div style="margin-top:10px;padding:10px 12px;border-radius:9px;background:rgba(0,0,0,0.3);font-family:var(--font-mono);font-size:0.7rem;line-height:1.7;color:#e9e5f6;white-space:nowrap;overflow-x:auto">GET /api/exports/7731<br>Authorization: Bearer •••••  (alice)</div></div><div class="bub a" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 1.4s both"><span class="who">assistant</span>Replaying every export request alice reached, first as bob, then with no credentials at all. A bypass only counts if anonymous is denied and bob still gets through.</div><div class="bub a" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 6.2s both"><span class="who">assistant</span>Yes. bob reads alice's export <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">7731</code> and 13 others. Anonymous is correctly denied, so the resource is gated and the gate is broken.<span class="runline">→ PROVEN by the engine · <b>IDOR · added to the retest cycle</b></span></div></div>
-            </div>
-            <div style="padding:28px;display:flex;flex-direction:column;gap:22px;background:rgba(0,0,0,0.18)">
-              <div>
-                <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:14px">Live run</div>
-                <div style="display:flex;flex-direction:column;gap:12px"><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 1.6s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">captured alice's export surface · 14 requests</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 2.5s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">replayed as anonymous · 401 on all 14 · resource is gated</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 3.4s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">replayed as bob · <span style="color:#ff9c9c">200 on 14/14</span></span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 4.3s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">response bodies identical to alice's · not a soft-404</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 5.2s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">reproduced 3/3 · both sessions held throughout</span></div></div>
-              </div>
-              <div data-a="" style="border-radius:14px;padding:16px 18px;background:rgba(46,189,133,0.08);border:1px solid rgba(46,189,133,0.35);animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 6.4s both">
-                  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-weight:600;color:#fff;font-size:0.92rem">Broken access control · IDOR</span><span class="tag t-ok">PROVEN · HIGH</span></div>
-                  <div style="margin-top:12px;padding:11px 13px;border-radius:9px;background:rgba(0,0,0,0.3);font-family:var(--font-mono);font-size:0.7rem;line-height:1.75;color:#cfc8e8;white-space:nowrap;overflow-x:auto">GET /api/exports/7731  as <span style="color:#ffc99e">bob</span><br>→ 200 · 2.1 KB · <span style="color:#ff9c9c">byte-identical to alice's</span></div>
-                  <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag t-mute">REPLAY</span><span class="tag t-mute">EVIDENCE.JSON</span><span class="tag t-dast">RETEST · C5</span></div>
-                </div>
-            </div>
-          </div>
-        </sc-if>
-          <sc-if value="{{ isS2 }}">
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr))">
-            <div style="padding:28px;display:flex;flex-direction:column;gap:14px;border-right:1px solid rgba(255,255,255,0.07)">
-              <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-dark)">Conversation</div>
-              <div class="chat" style="gap:14px"><div class="bub u" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 0.3s both"><span class="who">you</span>Is this JWT forgeable?<div style="margin-top:10px;padding:10px 12px;border-radius:9px;background:rgba(0,0,0,0.3);font-family:var(--font-mono);font-size:0.7rem;line-height:1.7;color:#e9e5f6;white-space:normal;overflow-wrap:anywhere;overflow-x:hidden">Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.…</div></div><div class="bub a" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 1.4s both"><span class="who">assistant</span>Decoding it, then running the forgery oracles: alg none, algorithm confusion, weak secret and claim tampering, each replayed against a protected endpoint.</div><div class="bub a" data-a="" style="max-width:92%;font-size:0.9rem;padding:13px 16px;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 6.2s both"><span class="who">assistant</span>No. Four attacks, none accepted. I'm not reporting anything: there's no proof, so there's no finding. Logged as tested.<span class="runline" style="color:var(--muted-dark)">→ NOT PROVEN · <b style="color:#cfc8e8">no finding reported</b></span></div></div>
-            </div>
-            <div style="padding:28px;display:flex;flex-direction:column;gap:22px;background:rgba(0,0,0,0.18)">
-              <div>
-                <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted-dark);margin-bottom:14px">Live run</div>
-                <div style="display:flex;flex-direction:column;gap:12px"><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 1.6s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">decoded · HS256 · exp in 38 min · 4 claims</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 2.5s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">·</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6"><code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">alg: none</code> · rejected 401</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 3.4s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">·</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">RS→HS confusion · no public key exposed · not applicable</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 4.3s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">·</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">weak-secret check · 0 matches within budget</span></div><div data-a="" style="display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start;animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 5.2s both"><span style="width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:0.62rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">·</span><span style="font-size:0.86rem;line-height:1.5;color:#e9e5f6">tampered <code style="font-family:var(--font-mono);font-size:0.9em;color:#ffd9b8">role: admin</code> · signature rejected</span></div></div>
-              </div>
-              <div data-a="" style="border-radius:14px;padding:16px 18px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);animation:fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) 6.4s both">
-                  <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-weight:600;color:#fff;font-size:0.92rem">JWT forgery · session token</span><span class="tag t-mute">NOT PROVEN</span></div>
-                  <div style="margin-top:12px;padding:11px 13px;border-radius:9px;background:rgba(0,0,0,0.3);font-family:var(--font-mono);font-size:0.7rem;line-height:1.75;color:#cfc8e8;white-space:nowrap;overflow-x:auto">4 attacks · 0 accepted<br>→ <span style="color:#cfc8e8">nothing reported · nothing to triage</span></div>
-                  <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap"><span class="tag t-mute">TESTED</span><span class="tag t-mute">RUN LOG</span></div>
-                </div>
-            </div>
-          </div>
-        </sc-if>
-        </div>
-
-        <div style="margin-top:26px;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
-          <div style="font-size:0.92rem;color:#e9e5f6;line-height:1.55"><b style="display:block;color:#ffb37e;font-weight:600;margin-bottom:2px">Hands-free, end to end.</b>Open a request in Request Lab, resend it, pull up findings, start a scan. Say it; it happens.</div>
-          <div style="font-size:0.92rem;color:#e9e5f6;line-height:1.55"><b style="display:block;color:#ffb37e;font-weight:600;margin-bottom:2px">Full attack, not a lookup.</b>Fingerprinting, every insertion point, encodings, out-of-band checks.</div>
-          <div style="font-size:0.92rem;color:#e9e5f6;line-height:1.55"><b style="display:block;color:#ffb37e;font-weight:600;margin-bottom:2px">Proof or a straight answer.</b>Comes back with evidence, or tells you exactly what it ruled out.</div>
-          <div style="font-size:0.92rem;color:#e9e5f6;line-height:1.55"><b style="display:block;color:#ffb37e;font-weight:600;margin-bottom:2px">Same rules as the engine.</b>It can't report a finding on its own, widen scope or spend past your cap.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+<section id="assistant" class="section"><div class="wrap"><div class="mode-intro"><div class="left"><div class="eyebrow">Run it your way · Next-gen hacking assistant</div><h2>Automate the whole test.<br><span class="accent">Or take the next move.</span></h2></div><p>Pick how much autonomy you want. Start a scan, target one concern, or talk Steiner through the investigation. The evidence stays together.</p></div>
+<div class="mode-grid" role="tablist" aria-label="Five ways to test">
+<button class="mode-card" type="button" data-mode="off" role="tab" id="assistant-tab-off" aria-controls="assistant-mode-panel" aria-selected="false" tabindex="-1" aria-pressed="false"><span class="num">01 · AI OFF</span><b>Test every release</b><small>Repeatable engine-only scans. No model spend.</small></button>
+<button class="mode-card" type="button" data-mode="on" role="tab" id="assistant-tab-on" aria-controls="assistant-mode-panel" aria-selected="false" tabindex="-1" aria-pressed="false"><span class="num">02 · AI ON</span><b>Investigate deeper</b><small>AI reasons within your scope and budget.</small><span class="status">VALIDATION</span></button>
+<button class="mode-card" type="button" data-mode="swarm" role="tab" id="assistant-tab-swarm" aria-controls="assistant-mode-panel" aria-selected="false" tabindex="-1" aria-pressed="false"><span class="num">03 · AGENT SWARM</span><b>Coordinate specialists</b><small>Parallel perspectives on a larger assessment.</small><span class="status">PLANNED</span></button>
+<button class="mode-card" type="button" data-mode="focused" role="tab" id="assistant-tab-focused" aria-controls="assistant-mode-panel" aria-selected="false" tabindex="-1" aria-pressed="false"><span class="num">04 · FOCUSED TEST</span><b>Check one concern</b><small>One module, request, endpoint or class.</small><span class="status">VALIDATION</span></button>
+<button class="mode-card" type="button" data-mode="partner" role="tab" id="assistant-tab-partner" aria-controls="assistant-mode-panel" aria-selected="true" tabindex="0" aria-pressed="true"><span class="num">05 · HACKER PARTNER</span><b>Work alongside it</b><small>Configure, investigate, explain, retest. Chat or voice.</small></button>
+</div><div class="mode-micro"><span>AI OFF → AI ON → SPECIALISTS → FOCUSED → PARTNER</span><span>•</span><b>Not five tools. Five ways into one engagement.</b><span>•</span><span>Scan depth is a separate choice.</span></div>
+<div class="console" id="assistant-mode-panel" role="tabpanel" aria-labelledby="assistant-tab-partner"><div class="console-head"><div class="title"><span class="dots"><i></i><i></i><i></i></span><b id="console-product">STEINER / HACKER PARTNER</b></div><div class="session-badges"><span>● SCOPE · STAGING</span><span>IDENTITIES · ALICE + BOB</span><span>SIMULATED DEMO</span><button type="button" class="rotation-toggle" aria-pressed="false" aria-label="Pause automatic tab rotation">Pause autoplay</button></div></div>
+<div class="demo-tools"><div class="examples-line"><label class="examples-label">TRY ASKING</label><div class="examples-list" id="example-list" role="group" aria-label="Examples for selected testing mode"></div></div><div class="voicebar"><button type="button" id="voice-cycle" aria-label="Show next example voice command" title="Cycle voice examples">◉</button><strong>VOICE · TRY SAYING</strong><em id="voice-text">“Set up two authenticated roles and run an access-control check.”</em><span class="voice-state">● VOICE WORKFLOW PREVIEW</span></div></div>
+<div class="workspace" aria-live="off"><div class="rotation-progress" aria-hidden="true"><i></i></div><div class="workspace-top"><span class="loc" id="workspace-loc">ASSISTANT / APP.EXAMPLE.COM / ENGAGEMENT-12</span><span class="run-state"><i class="live-dot" aria-hidden="true"></i> <span id="workspace-state">PREPARED ACTION</span></span></div><div class="workspace-cols"><div class="conversation"><span class="pane-label" id="left-title">CONVERSATION</span><div class="bubble user"><span class="who" id="user-title">YOU · IN CHAT</span><span id="user-message">Set up an authenticated scan of staging with Alice and Bob.</span><code id="user-attachment">staging.example.com  ·  Alice / Bob sessions</code></div><div class="bubble steiner"><span class="who" id="agent-title">STEINER · ACTION READY</span><span id="agent-message">I prepared the scan with both identities and verified the scope.</span><code id="agent-addendum">Plan prepared — review before launch</code></div><div class="operator-hint" id="operator-hint">Operator controls scope, approval and AI budget. The product's execution engine handles the tests.</div></div><div class="live-run"><div class="run-scroll"><div class="run-label"><small id="run-title">LIVE EXECUTION · ACTIONS</small><span id="run-meta">4 STEPS</span></div><ul class="run-steps" id="run-steps"></ul></div><div class="result" id="result"><div class="result-header"><span class="result-title" id="result-title">Authenticated scan prepared</span><span class="result-status" id="result-status">READY TO REVIEW</span></div><code class="result-code" id="result-code">scope: staging.example.com</code><div class="result-foot" id="result-foot"><span>SCOPED</span><span>SAME ENGAGEMENT</span><span>RETEST HISTORY</span></div></div></div></div></div>
+<div class="shared"><div class="shared-main"><span class="shared-icon">⌁</span><div><b>One investigation. No reset when you switch modes.</b><small>All five experiences connect to the same findings, replay evidence, and retest history.</small></div></div><div class="shared-path"><span>Baseline scan</span><i>→</i><span>Focused follow-up</span><i>→</i><span>Hacker partner</span><i>→</i><span>Fix retest</span></div></div></div>
+<div class="note-footer"><span><b>Explore:</b> switch testing modes, then click example prompts. The conversation and execution panel change together.</span><span>Illustrative examples. Planned and validation features are labelled above.</span></div>
+<div class="highlights"><div><span class="hicon">⌘</span><span><strong>Act, don't just ask.</strong><small>Prepare scan setup, launch focused testing, inspect results, or navigate the workspace.</small></span></div><div><span class="hicon">↗</span><span><strong>Choose your AI spend.</strong><small>Run engine-only checks or add agent reasoning under an operator-selected cap.</small></span></div><div><span class="hicon">↺</span><span><strong>Evidence follows the finding.</strong><small>Retest the same exploit after a fix; preserve the earlier proof and outcomes.</small></span></div></div>
+</div></section>
 
   <section class="section" id="wedge" style="padding-top:0">
     <div class="wrap">
@@ -537,14 +457,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 </x-dc>
 <script type="text/dc-logic" data-dc-script data-props='{"headline":{"editor":"enum","options":["AI finds the path","Every vuln proven","Not a scanner"],"default":"AI finds the path","tsType":"string"},"showComparison":{"editor":"boolean","default":true,"tsType":"boolean"}}'>
 class Component extends DCLogic {
-  state = { scrolled: false, menu: false, sc: 0, auto: true, vc: 0 };
-  voiceCmds = [
-    ['“Open this request in a new tab.”', 'Opening'],
-    ['“Send this request to Request Lab.”', 'Sent · Request Lab'],
-    ['“Resend the request with the payload.”', 'Replaying'],
-    ['“Show me the proven findings from this cycle.”', 'Listing 7'],
-    ['“Start an authenticated scan of staging.”', 'Scan queued'],
-  ];
+  state = { scrolled: false, menu: false };
   componentDidMount() {
     this.onScroll = (e) => {
       const t = e && e.target && e.target.scrollTop != null ? e.target.scrollTop : 0;
@@ -554,8 +467,7 @@ class Component extends DCLogic {
     document.addEventListener('scroll', this.onScroll, { capture: true, passive: true });
     this.onScroll();
     this.observeReveals();
-    this.timer = setInterval(() => { if (this.state.auto) this.setState(s => ({ sc: (s.sc + 1) % 3 })); }, 11000);
-    this.vtimer = setInterval(() => this.setState(s => ({ vc: (s.vc + 1) % this.voiceCmds.length })), 3600);
+    this.assistantCleanup = window.initSteinerAssistant(document.getElementById('assistant'));
     setTimeout(() => this.observeReveals(), 400);
     setTimeout(() => this.observeReveals(), 1500);
   }
@@ -568,21 +480,12 @@ class Component extends DCLogic {
     document.querySelectorAll('.reveal:not([data-obs])').forEach(el => { el.setAttribute('data-obs', '1'); this.io.observe(el); });
   }
   componentDidUpdate() { this.observeReveals(); }
-  componentWillUnmount() { document.removeEventListener('scroll', this.onScroll, { capture: true }); if (this.io) this.io.disconnect(); clearInterval(this.timer); clearInterval(this.vtimer); }
+  componentWillUnmount() { document.removeEventListener('scroll', this.onScroll, { capture: true }); if (this.io) this.io.disconnect(); if (this.assistantCleanup) this.assistantCleanup(); }
   renderVals() {
     const h = this.props.headline ?? 'AI finds the path';
     const showCompare = this.props.showComparison ?? true;
-    const { scrolled, menu, sc, auto, vc } = this.state;
-    const [voiceCmd, voiceState] = this.voiceCmds[vc];
-    const chipBase = 'cursor:pointer;font:inherit;font-family:var(--font-mono);font-size:0.74rem;border-radius:99px;padding:9px 15px;transition:all .25s ease;text-align:left;';
-    const chip = (i) => chipBase + (sc === i ? 'color:#fff;background:rgba(255,138,61,0.22);border:1px solid rgba(255,138,61,0.7);box-shadow:0 8px 24px -12px rgba(255,138,61,0.8)' : 'color:#ffd9b8;background:rgba(255,138,61,0.08);border:1px solid rgba(255,138,61,0.28)');
-    const pick = (i) => () => this.setState({ sc: i, auto: false });
+    const { scrolled, menu } = this.state;
     return {
-      isS0: sc === 0, isS1: sc === 1, isS2: sc === 2,
-      voiceCmd, voiceState: '● ' + voiceState,
-      chip0: chip(0), chip1: chip(1), chip2: chip(2),
-      pick0: pick(0), pick1: pick(1), pick2: pick(2),
-      progressStyle: 'position:absolute;left:0;bottom:-1px;height:2px;width:100%;transform-origin:left;background:linear-gradient(90deg,var(--dast),#ffc688);' + (auto ? 'animation:progress 11s linear infinite;' : 'transform:scaleX(1);opacity:0.35;'),
       hA: h === 'AI finds the path', hB: h === 'Every vuln proven', hC: h === 'Not a scanner',
       showCompare,
       wedgePad: showCompare ? { paddingTop: 0 } : {},
