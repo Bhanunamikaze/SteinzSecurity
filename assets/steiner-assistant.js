@@ -58,7 +58,7 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
   }
   function syncRotation() {
     root.querySelector('.workspace').setAttribute('aria-live',isRunning() ? 'off' : 'polite');
-    toggle.textContent = paused ? 'Play autoplay' : 'Pause autoplay';
+    toggle.textContent = paused ? 'Play demo' : 'Pause autoplay';
     toggle.setAttribute('aria-pressed',String(paused));
     toggle.setAttribute('aria-label',paused ? 'Start automatic tab rotation' : 'Pause automatic tab rotation');
     if(progressAnimation) {if(isRunning()) progressAnimation.play(); else progressAnimation.pause();}
@@ -87,8 +87,9 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
     clone.style.cssText += ';position:fixed;left:-20000px;top:0;visibility:hidden;pointer-events:none;width:'+root.getBoundingClientRect().width+'px';
     clone.querySelector('.examples-line').style.minHeight = '';
     clone.querySelector('.workspace-cols').style.minHeight = '';
+    clone.querySelector('.workspace-top').style.minHeight = '';
     originalRoot.parentElement.append(clone);
-    let exampleHeight = 0, workspaceHeight = 0;
+    let exampleHeight = 0, workspaceHeight = 0, topHeight = 0;
     measuring = true;
     try {
       root = clone;
@@ -98,6 +99,7 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
         scenarios[mode].forEach((_,i) => {
           renderExample(i);
           workspaceHeight = Math.max(workspaceHeight,root.querySelector('.workspace-cols').getBoundingClientRect().height);
+          topHeight = Math.max(topHeight,root.querySelector('.workspace-top').getBoundingClientRect().height);
         });
       });
     } finally {
@@ -106,6 +108,7 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
     }
     root.querySelector('.examples-line').style.minHeight = Math.ceil(exampleHeight)+'px';
     root.querySelector('.workspace-cols').style.minHeight = Math.ceil(workspaceHeight)+'px';
+    root.querySelector('.workspace-top').style.minHeight = Math.ceil(topHeight)+'px';
     layoutWidth = root.querySelector('.wrap').getBoundingClientRect().width;
   }
   chooseMode('partner');setVoice();reserveLayout();restartClock();
