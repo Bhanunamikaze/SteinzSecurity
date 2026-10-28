@@ -1,0 +1,28 @@
+# Steinz Security
+
+> Steinz Security develops evidence-driven security products: Steiner for web application and API penetration testing, and SteinzPurple for detection validation.
+
+The public website is operated by Steinz Security Private Limited, based in Andhra Pradesh, India. Product demonstrations and sample findings are illustrative. Demo enquiries are handled by email at contact@steinzsecurity.com.
+
+Steiner is presented as an AI penetration testing platform and AI hacking partner. Its five-mode product preview covers AI-off engine scans, AI-on investigation, specialist agent swarm, focused tests, and chat or voice assistance. The published page labels AI-on and focused testing as in validation and agent swarm as planned. Confirm current availability through a demo; previews are not release commitments.
+
+SteinzPurple is presented as a purple-team detection-validation product: run ATT&CK-mapped tests, collect detection evidence, assign remediation work and retest fixes.
+
+## Products
+
+- [Steiner](https://www.steinzsecurity.com/products/steiner/): Public product information, testing-mode previews, illustrative evidence and continuous-validation workflow.
+- [SteinzPurple](https://www.steinzsecurity.com/products/steinzpurple/): Public product information about detection validation, evidence, remediation and retesting.
+- [Company overview](https://www.steinzsecurity.com/): The relationship between the two products and the company's evidence-driven approach.
+
+## Company and website policies
+
+- [Contact Us](https://www.steinzsecurity.com/contact/): Demo enquiries, company queries, registered address and CIN.
+- [Privacy Policy](https://www.steinzsecurity.com/privacy/): Website infrastructure, analytics, external fonts and email-enquiry information handling.
+- [Terms and Conditions](https://www.steinzsecurity.com/terms/): Terms for the public website; product and service agreements are separate.
+- [Disclaimer](https://www.steinzsecurity.com/disclaimer/): How to interpret illustrative demonstrations, availability labels and product statements.
+- [Copyright Reporting](https://www.steinzsecurity.com/copyright/): How to report concerns about website material and find the site's font licences.
+
+## Optional
+
+- [Sitemap](https://www.steinzsecurity.com/sitemap.xml): Canonical public page URLs.
+- [Crawler directives](https://www.steinzsecurity.com/robots.txt): The site's published crawler access directives.
