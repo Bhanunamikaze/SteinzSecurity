@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Steiner | AI Penetration Testing Platform</title>
+<meta name="description" content="Explore Steiner's AI penetration testing platform and AI hacking partner for web apps and APIs, with replayable evidence, scoped tests, and fix retesting.">
+<link rel="canonical" href="https://www.steinzsecurity.com/products/steiner/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#120d1f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Steinz Security">
+<meta property="og:url" content="https://www.steinzsecurity.com/products/steiner/">
+<meta property="og:title" content="Steiner | AI Penetration Testing Platform">
+<meta property="og:description" content="Automated web app and API testing, an AI hacking partner, and replayable evidence in one findings and retest workflow. Explore the five-mode product previews.">
+<meta property="og:image" content="https://www.steinzsecurity.com/assets/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Steinz Security | Security you can prove">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Steiner | AI Penetration Testing Platform">
+<meta name="twitter:description" content="Automated web app and API testing, an AI hacking partner, and replayable evidence in one findings and retest workflow. Explore the five-mode product previews.">
+<meta name="twitter:image" content="https://www.steinzsecurity.com/assets/og-image.png">
+<meta name="twitter:image:alt" content="Steinz Security | Security you can prove">
+<link rel="icon" type="image/png" href="../../assets/icon-512.png">
+<link rel="apple-touch-icon" href="../../assets/icon-512.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://www.steinzsecurity.com/products/steiner/#software","name":"Steiner","applicationCategory":"SecurityApplication","url":"https://www.steinzsecurity.com/products/steiner/","image":"https://www.steinzsecurity.com/assets/og-image.png","description":"AI penetration testing platform for web apps and APIs, with an AI hacking partner, replayable exploit evidence, and fix retesting.","provider":{"@type":"Organization","@id":"https://www.steinzsecurity.com/#org","name":"Steinz Security Private Limited","url":"https://www.steinzsecurity.com/"}}</script>
 <link rel="stylesheet" href="../../assets/steiner-assistant.css?v=motion-2">
-<script src="../../assets/steiner-assistant.js?v=motion-2"></script>
-<script src="../../assets/support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<script defer src="../../assets/site.js"></script>
+<script defer src="../../assets/steiner-assistant.js?v=motion-2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="../../assets/style.css">
-<title>Steiner | AI penetration testing that proves every finding</title>
 <style>
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes stepglow { 0%, 100% { transform: none; } 8% { transform: translateY(-6px); } 22% { transform: none; } }
@@ -34,13 +51,15 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 .nav.scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(18, 13, 31, 0.94); }
 .scan-bar::after, .pulse::after, .mic::after { will-change: transform; }
 </style>
-</helmet>
+</head>
+<body>
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 
-<header class="{{ navCls }}">
+<header class="nav">
   <div class="nav-inner">
     <a class="logo" href="../../"><span>Steinz<em>Security</em></span><i></i></a>
-    <button class="menu-btn" onClick="{{ toggleMenu }}">{{ menuLabel }}</button>
-    <nav class="{{ linksCls }}" id="navlinks" aria-label="Main">
+    <button class="menu-btn" aria-expanded="false" aria-controls="navlinks">MENU</button>
+    <nav class="nav-links" id="navlinks" aria-label="Main">
       <a class="dot-dast active" href="../steiner/">Steiner</a>
       <a class="dot-purple" href="../steinzpurple/">SteinzPurple</a>
       <a class="btn btn-primary btn-dast nav-cta" href="#demo">Request a demo</a>
@@ -51,21 +70,19 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 <section class="hero tint-dast on-ink">
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <p style="display:flex;align-items:center;gap:10px;margin:0 0 18px;font-family:var(--font-mono);font-size:0.74rem;letter-spacing:0.16em;text-transform:uppercase;color:#ffb37e"><span class="pulse p-dast" style="width:8px;height:8px;border-radius:50%;background:var(--dast);position:relative;display:inline-block"></span>AI penetration testing · Every finding proven</p>
+      <p style="display:flex;align-items:center;gap:10px;margin:0 0 18px;font-family:var(--font-mono);font-size:0.74rem;letter-spacing:0.16em;text-transform:uppercase;color:#ffb37e"><span class="pulse p-dast" style="width:8px;height:8px;border-radius:50%;background:var(--dast);position:relative;display:inline-block"></span>AI penetration testing platform</p>
       <h1 class="display" style="font-size:clamp(3.4rem,8.2vw,6.4rem);line-height:0.95;letter-spacing:-0.04em;font-weight:800">Stein<span class="grad-dast">er</span></h1>
-      <sc-if value="{{ hA }}" hint-placeholder-val="{{ true }}"><p style="margin:22px 0 0;font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.15;font-weight:600;letter-spacing:-0.02em;color:#fff">AI finds the path. <span style="color:var(--muted-dark)">The engine proves it.</span></p></sc-if>
-      <sc-if value="{{ hB }}"><p style="margin:22px 0 0;font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.15;font-weight:600;letter-spacing:-0.02em;color:#fff">Every vuln proven. <span style="color:var(--muted-dark)">Every fix retested.</span></p></sc-if>
-      <sc-if value="{{ hC }}"><p style="margin:22px 0 0;font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.15;font-weight:600;letter-spacing:-0.02em;color:#fff">Not a scanner. <span style="color:var(--muted-dark)">A pentester that shows its work.</span></p></sc-if>
-      <p class="lede" style="margin-top:18px">Steiner attacks your web apps the way a real attacker would, then proves every vulnerability with a working, replayable exploit. Run full end-to-end scans on autopilot, AI on or off, or hand its next-gen hacking assistant a hunch, typed or spoken. Every fix is retested until it holds. No false positives. No scanner noise.</p>
+      <p style="margin:22px 0 0;font-family:var(--font-display);font-size:clamp(1.5rem,2.6vw,2.1rem);line-height:1.15;font-weight:600;letter-spacing:-0.02em;color:#fff">AI finds the path. <span style="color:var(--muted-dark)">The engine proves it.</span></p>
+      <p class="lede" style="margin-top:18px">Steiner is an AI penetration testing platform for web apps and APIs. Run repeatable scans with AI off, or work with its AI hacking partner through chat or voice. Findings carry replayable exploit evidence into the same retest workflow. Explore AI-on, focused testing and planned swarm previews below.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary btn-dast" href="#demo">Request a demo <span class="arrow">→</span></a>
         <a class="btn btn-ghost" href="#assistant">See it hack a request</a>
       </div>
       <div class="hero-meta">
-        <span>0 false positives</span>
+        <span>Exploit-backed findings</span>
         <span>Proof with every finding</span>
         <span>Fixes retested automatically</span>
-        <span>Stays logged in, any app</span>
+        <span>Authenticated testing</span>
       </div>
     </div>
 
@@ -99,9 +116,9 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 
       </div>
       <div class="float-chip">
-        <span class="fc-k">PRECISION</span>
-        <b>0 <em>false positives</em></b>
-        <span class="fc-t">1,284 leads → 7 real exploits. Nothing to triage.</span>
+        <span class="fc-k">ILLUSTRATIVE SCAN</span>
+        <b>7 <em>proven exploits</em></b>
+        <span class="fc-t">Example: 1,284 leads → 7 replayable proofs.</span>
       </div>
     </div>
   </div>
@@ -109,7 +126,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 
 <main class="sheet">
 
-<section id="assistant" class="section"><div class="wrap"><div class="mode-intro"><div class="left"><div class="eyebrow">Run it your way · Next-gen hacking assistant</div><h2>Automate the whole test.<br><span class="accent">Or take the next move.</span></h2></div><p>Pick how much autonomy you want. Start a scan, target one concern, or talk Steiner through the investigation. The evidence stays together.</p></div>
+<section id="assistant" class="section"><div class="wrap"><div class="mode-intro"><div class="left"><div class="eyebrow">Run it your way · AI hacking partner</div><h2>Automate the whole test.<br><span class="accent">Or take the next move.</span></h2></div><p>Explore automated penetration testing or work with an AI pentesting assistant. Choose how much autonomy you want, from a repeatable scan to a focused investigation. The evidence stays together.</p></div>
 <div class="mode-hint"><span>CHOOSE HOW TO TEST</span><span><i aria-hidden="true"></i>Auto preview · click a card to explore</span></div>
 <div class="mode-grid" role="tablist" aria-label="Five ways to test">
 <button class="mode-card" type="button" data-mode="off" role="tab" id="assistant-tab-off" aria-controls="assistant-mode-panel" aria-selected="false" tabindex="-1" aria-pressed="false"><span class="num">01 · AI OFF</span><b>Test every release</b><small>Repeatable engine-only scans. No model spend.</small><span class="mode-cta">View demo <b aria-hidden="true">↗</b></span></button>
@@ -122,7 +139,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 <div class="demo-tools"><div class="examples-line"><label class="examples-label">TRY ASKING</label><div class="examples-list" id="example-list" role="group" aria-label="Examples for selected testing mode"></div></div><div class="voicebar"><button type="button" id="voice-cycle" class="voice-orb" aria-label="Play the next voice workflow example (simulated)" title="Try a voice workflow example"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M6 10v2a6 6 0 0 0 12 0v-2M12 18v3M9 21h6"></path></svg></button><span class="voice-wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><strong>VOICE · TRY SAYING</strong><em id="voice-text">“Set up two authenticated roles and run an access-control check.”</em><span class="voice-state">LISTENING · DEMO</span></div></div>
 <div class="workspace" aria-live="off"><div class="workspace-top"><span class="loc" id="workspace-loc">ASSISTANT / APP.EXAMPLE.COM / ENGAGEMENT-12</span><span class="run-state"><i class="live-dot" aria-hidden="true"></i> <span id="workspace-state">PREPARED ACTION</span></span></div><div class="workspace-cols"><div class="conversation"><span class="pane-label" id="left-title">CONVERSATION</span><div class="bubble user"><span class="who" id="user-title">YOU · IN CHAT</span><span id="user-message">Set up an authenticated scan of staging with Alice and Bob.</span><code id="user-attachment">staging.example.com  ·  Alice / Bob sessions</code></div><div class="bubble steiner"><span class="who" id="agent-title">STEINER · ACTION READY</span><span id="agent-message">I prepared the scan with both identities and verified the scope.</span><code id="agent-addendum">Plan prepared — review before launch</code></div><div class="operator-hint" id="operator-hint">Operator controls scope, approval and AI budget. The product's execution engine handles the tests.</div></div><div class="live-run"><div class="run-scroll"><div class="run-label"><small id="run-title">LIVE EXECUTION · ACTIONS</small><span id="run-meta">4 STEPS</span></div><ul class="run-steps" id="run-steps"></ul></div><div class="result" id="result"><div class="result-header"><span class="result-title" id="result-title">Authenticated scan prepared</span><span class="result-status" id="result-status">READY TO REVIEW</span></div><code class="result-code" id="result-code">scope: staging.example.com</code><div class="result-foot" id="result-foot"><span>SCOPED</span><span>SAME ENGAGEMENT</span><span>RETEST HISTORY</span></div></div></div></div></div>
 <div class="shared"><div class="shared-main"><span class="shared-icon">⌁</span><div><b>One investigation. No reset when you switch modes.</b><small>All five experiences connect to the same findings, replay evidence, and retest history.</small></div></div><div class="shared-path"><span>Baseline scan</span><i>→</i><span>Focused follow-up</span><i>→</i><span>Hacker partner</span><i>→</i><span>Fix retest</span></div></div></div>
-<div class="note-footer"><span><b>Explore:</b> switch testing modes, then click example prompts. The conversation and execution panel change together.</span><span>Illustrative examples. Planned and validation features are labelled above.</span></div>
+<div class="note-footer"><span><b>Explore:</b> switch testing modes, then click example prompts. The conversation and execution panel change together.</span><span>Product previews. AI-on scans and focused tests are in validation; agent swarm is planned. Confirm current availability in your demo.</span></div>
 <div class="highlights"><div><span class="hicon">⌘</span><span><strong>Act, don't just ask.</strong><small>Prepare scan setup, launch focused testing, inspect results, or navigate the workspace.</small></span></div><div><span class="hicon">↗</span><span><strong>Choose your AI spend.</strong><small>Run engine-only checks or add agent reasoning under an operator-selected cap.</small></span></div><div><span class="hicon">↺</span><span><strong>Evidence follows the finding.</strong><small>Retest the same exploit after a fix; preserve the earlier proof and outcomes.</small></span></div></div>
 </div></section>
 
@@ -131,7 +148,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
       <div class="section-head center reveal">
         <p class="eyebrow dast">Continuous by design</p>
         <h2 class="h2">A loop, not a one-off scan</h2>
-        <p class="lede" style="margin-left:auto;margin-right:auto">Scanner, assistant and proof engine work from one shared picture of your app. Scans run on a schedule or on every deploy, you can step in at any stage, and every proven finding stays open until a retest shows the fix holds.</p>
+        <p class="lede" style="margin-left:auto;margin-right:auto">Continuous penetration testing connects scheduled or release-triggered scans with the same finding history. Scanner, assistant and proof engine share the application context, and a finding stays open until a retest verifies the fix.</p>
       </div>
       <div class="reveal" style="position:relative;padding-bottom:64px">
         <div class="pipeline rich dast" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
@@ -198,7 +215,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
         <div class="stat s-blue"><div class="n">100%</div><div class="d">of findings ship with a proof you can replay yourself</div></div>
         <div class="stat s-red"><div class="n">40+</div><div class="d">vulnerability classes, each with its own way of proving the exploit</div></div>
       </div>
-      <p style="margin:22px 0 0;font-size:0.82rem;color:var(--muted);max-width:76ch">Precision and false-positive figures are measured on our internal benchmark corpus.</p>
+      <p style="margin:22px 0 0;font-size:0.82rem;color:var(--muted);max-width:76ch">Precision and false-positive figures describe our internal benchmark corpus, not a guarantee for every application. Coverage depends on scope, reachable routes, authentication and supported checks. Interface examples on this page are illustrative.</p>
     </div>
   </section>
 
@@ -245,7 +262,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
         <div>
           <p class="eyebrow dast">Authentication &amp; session</p>
           <h2 class="h2">Logs in. Stays logged in.<br>Tests what's actually behind the door.</h2>
-          <p>Most scans fail quietly the moment a session expires, and everything after that is tested as an anonymous visitor. Steiner handles authentication automatically for any kind of application, then <strong>manages the session for the entire scan</strong>: it checks liveness, refreshes tokens, follows CSRF rotation and logs back in the instant it's kicked out.</p>
+          <p>Authenticated penetration testing needs a valid session throughout the scan. Steiner checks session liveness and <strong>manages configured authentication flows</strong> with token refresh, CSRF handling and re-login. Coverage depends on the application's login flow and the credentials and access you provide.</p>
           <ul class="check-list dast">
             <li>Form, multi-step and MFA login, OAuth2, JWT/bearer, cookies, API keys, mTLS</li>
             <li>Continuous liveness checks with automatic re-login and token refresh</li>
@@ -286,8 +303,8 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
       <div class="feature-row reveal">
         <div>
           <p class="eyebrow dast">AI where it pays off</p>
-          <h2 class="h2">AI-level depth.<br>A fraction of the AI bill.</h2>
-          <p>AI-only tools push every request, page and decision through a model, and you pay for all of it. Steiner's deterministic engine does the heavy lifting: crawling, attacking and proving. AI is applied <strong>surgically</strong>, to the leads that need judgement, so you get AI-level depth without AI-level bills.</p>
+          <h2 class="h2">Choose the reasoning.<br>Control the AI budget.</h2>
+          <p>Steiner's deterministic engine handles crawling, testing and proof replay without model calls. The AI-on preview adds <strong>reasoning for selected leads</strong> under an operator-set budget. AI-off scans and deterministic retests use no model tokens; infrastructure and product costs still apply.</p>
           <ul class="check-list dast">
             <li>AI reasons over the hard residual, not every request</li>
             <li>Cheap models for triage, frontier models only for hard calls</li>
@@ -323,9 +340,9 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
   <section class="section" style="padding-top:0">
     <div class="wrap">
       <div class="section-head reveal">
-        <p class="eyebrow dast">Full coverage</p>
-        <h2 class="h2">Everything a real attacker would try</h2>
-        <p class="lede">The whole OWASP surface and well beyond it: 40+ vulnerability classes, every one with its own way of proving the exploit, so what reaches your report is real, not theoretical.</p>
+        <p class="eyebrow dast">Testing coverage</p>
+        <h2 class="h2">Web application and API penetration testing</h2>
+        <p class="lede">Explore 40+ vulnerability classes, including common OWASP risks, with checks built to collect exploit evidence. Actual coverage depends on the application, selected scope and supported test prerequisites.</p>
       </div>
       <div class="grid-3">
         <div class="card reveal"><span class="chip-icon dast">⌁</span><h3 class="h3">Injection</h3><p>SQL (error, boolean, UNION, time-blind), NoSQL, command, SSTI→RCE, XXE, LDAP, XPath, XSLT, CRLF, host-header, OGNL/SpEL.</p><p style="margin-top:14px;font-family:var(--font-mono);font-size:0.72rem;color:var(--dast-deep)">Proven by out-of-band callback · tool confirm · timing</p></div>
@@ -364,7 +381,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
           <span style="font-family:var(--font-mono);font-size:0.66rem;letter-spacing:0.14em;text-transform:uppercase;color:#ffb37e;border:1px solid rgba(255,138,61,0.4);background:rgba(255,138,61,0.1);border-radius:99px;padding:6px 13px">45 minutes</span>
         </div>
         <h2 class="display" style="color:#fff;max-width:20ch;margin:0 auto 20px;font-size:clamp(2.4rem,5vw,3.8rem)">Bring a hunch.<br><span class="grad-dast">Leave with a proven exploit.</span></h2>
-        <p style="max-width:54ch;margin:0 auto 38px;font-size:1.08rem">Live, on an app you're authorized to test. You point at what worries you; Steiner logs in, attacks it, and shows you the exploit or tells you exactly why there isn't one.</p>
+        <p style="max-width:54ch;margin:0 auto 38px;font-size:1.08rem">Live, on an app you're authorized to test. Bring the request or workflow that worries you; we'll check access, walk through the test and show what Steiner could validate, with the evidence behind the result.</p>
         <div class="hero-ctas" style="justify-content:center">
           <a class="btn btn-primary btn-dast" href="mailto:contact@steinzsecurity.com?subject=Steiner%20demo" style="padding:16px 34px;font-size:1.02rem">Request a live session <span class="arrow">→</span></a>
         </div>
@@ -405,45 +422,12 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
     </div>
   </div>
 </footer>
-</x-dc>
-<script type="text/dc-logic" data-dc-script data-props='{"headline":{"editor":"enum","options":["AI finds the path","Every vuln proven","Not a scanner"],"default":"AI finds the path","tsType":"string"}}'>
-class Component extends DCLogic {
-  state = { scrolled: false, menu: false };
-  componentDidMount() {
-    this.onScroll = (e) => {
-      const t = e && e.target && e.target.scrollTop != null ? e.target.scrollTop : 0;
-      const s = Math.max(window.scrollY || 0, document.documentElement.scrollTop || 0, document.body.scrollTop || 0, t) > 24;
-      if (s !== this.state.scrolled) this.setState({ scrolled: s });
-    };
-    document.addEventListener('scroll', this.onScroll, { capture: true, passive: true });
-    this.onScroll();
-    this.observeReveals();
-    this.assistantCleanup = window.initSteinerAssistant(document.getElementById('assistant'));
-    setTimeout(() => this.observeReveals(), 400);
-    setTimeout(() => this.observeReveals(), 1500);
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof window.initSteinerAssistant === 'function') {
+    window.initSteinerAssistant(document.getElementById('assistant'));
   }
-  observeReveals() {
-    if (!this.io) {
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (reduced || !('IntersectionObserver' in window)) { document.querySelectorAll('.reveal').forEach(el => el.classList.add('in')); return; }
-      this.io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); this.io.unobserve(e.target); } }), { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    }
-    document.querySelectorAll('.reveal:not([data-obs])').forEach(el => { el.setAttribute('data-obs', '1'); this.io.observe(el); });
-  }
-  componentDidUpdate() { this.observeReveals(); }
-  componentWillUnmount() { document.removeEventListener('scroll', this.onScroll, { capture: true }); if (this.io) this.io.disconnect(); if (this.assistantCleanup) this.assistantCleanup(); }
-  renderVals() {
-    const h = this.props.headline ?? 'AI finds the path';
-    const { scrolled, menu } = this.state;
-    return {
-      hA: h === 'AI finds the path', hB: h === 'Every vuln proven', hC: h === 'Not a scanner',
-      navCls: 'nav' + (scrolled || menu ? ' scrolled' : ''),
-      linksCls: 'nav-links' + (menu ? ' open' : ''),
-      menuLabel: menu ? 'CLOSE' : 'MENU',
-      toggleMenu: () => this.setState(s => ({ menu: !s.menu })),
-    };
-  }
-}
+});
 </script>
 </body>
 </html>
