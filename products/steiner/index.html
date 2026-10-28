@@ -19,7 +19,6 @@
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes stepglow { 0%, 100% { transform: none; } 8% { transform: translateY(-6px); } 22% { transform: none; } }
 @keyframes iconpop { 0%, 100% { transform: none; } 8% { transform: scale(1.16); } 22% { transform: none; } }
-@keyframes rowin { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 @keyframes seqin { 0% { opacity: 0.15; transform: translateY(8px); } 7% { opacity: 1; transform: none; } 88% { opacity: 1; transform: none; } 100% { opacity: 0.15; transform: translateY(8px); } }
 @keyframes growloop { 0% { transform: scaleX(0); } 22% { transform: scaleX(1); } 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
 @keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
@@ -30,12 +29,10 @@
 @keyframes growx { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes softblink { 50% { opacity: 0.35; } }
 @keyframes dots { 0%, 20% { opacity: 0.2; } 40% { opacity: 1; } 100% { opacity: 0.2; } }
-@keyframes glide { 0% { transform: translateX(-120%); } 55%, 100% { transform: translateX(330%); } }
 .reveal:not(.in) [data-a] { animation-play-state: paused; }
 main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; contain-intrinsic-size: auto 900px; }
 .nav.scrolled { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(18, 13, 31, 0.94); }
 .scan-bar::after, .pulse::after, .mic::after { will-change: transform; }
-@media (max-width: 850px) { #different .comparison-card--steiner { order: -1; } }
 </style>
 </helmet>
 
@@ -111,53 +108,6 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 </section>
 
 <main class="sheet">
-
-  <sc-if value="{{ showCompare }}" hint-placeholder-val="{{ true }}">
-  <section class="section" id="different">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <p class="eyebrow dast">Why it's different</p>
-        <h2 class="h2">A scanner flags it. Steiner proves it.</h2>
-        <p class="lede" style="margin-left:auto;margin-right:auto">In this illustrative SQL injection example, the scanner raises an alert and the AI-only agent offers an opinion. Steiner reproduces the exploit, attaches evidence, and queues a retest.</p>
-      </div>
-
-      <div class="reveal in" style="position:relative;background:var(--ink);border-radius:28px;padding:40px;overflow:hidden;background-image:radial-gradient(700px 360px at 85% 100%, rgba(255,138,61,0.18), transparent 65%),radial-gradient(600px 320px at 5% 0%, rgba(123,91,255,0.2), transparent 65%)">
-        <div style="position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:28px;padding:14px 18px;border-radius:14px;background:rgba(255,138,61,0.08);border:1px solid rgba(255,138,61,0.28)">
-          <i aria-hidden="true" style="position:absolute;top:0;bottom:0;left:0;width:38%;background:linear-gradient(90deg,transparent,rgba(255,138,61,0.3),transparent);animation:glide 6s ease-in-out infinite;pointer-events:none"></i>
-          <span style="position:relative;font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;color:#ffb37e">The same lead</span>
-          <span style="font-family:var(--font-mono);font-size:0.86rem;color:#fff">GET /api/orders?<span style="color:#ffb37e;background:rgba(255,138,61,0.16);border-radius:5px;padding:1px 6px">id=1042</span></span>
-          <span style="font-family:var(--font-mono);font-size:0.68rem;color:var(--muted-dark);margin-left:auto">suspicious parameter · authenticated as alice</span>
-        </div>
-
-        <div class="comparison-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;align-items:stretch">
-          <div style="position:relative;border-radius:18px;padding:24px 24px 22px;display:flex;flex-direction:column;gap:18px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.025)">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;color:#e9e5f6">Traditional DAST</span><span style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-dark);border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:4px 9px">Pattern match</span></div>
-            <div style="display:flex;flex-direction:column;gap:10px;border-left:1px dashed rgba(255,255,255,0.1);margin-left:8px;padding-left:16px"><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.15s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">1</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Fires a payload list at <code style="font-family:var(--font-mono);font-size:0.9em">id</code></span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.3s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">2</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Sees a database error string in the response</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.45s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,93,93,0.16);color:#ff9c9c">✕</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Session expired halfway; rest tested as anonymous</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.6s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,93,93,0.16);color:#ff9c9c">✕</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Files an alert. Verification is your job</span></div></div>
-            <div data-a="" style="margin-top:auto;border-radius:12px;padding:14px 16px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.07);animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.85s both"><div style="font-family:var(--font-mono);font-size:0.72rem;color:#ffd479;font-weight:600">⚠ Possible SQL injection · medium</div><div style="font-family:var(--font-mono);font-size:0.66rem;color:var(--muted-dark);margin-top:4px">+ 312 similar alerts to triage · full rescan to confirm a fix</div></div>
-          </div>
-          <div style="position:relative;border-radius:18px;padding:24px 24px 22px;display:flex;flex-direction:column;gap:18px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.025)">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;color:#e9e5f6">AI-only pentest agent</span><span style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted-dark);border:1px solid rgba(255,255,255,0.14);border-radius:99px;padding:4px 9px">Model opinion</span></div>
-            <div style="display:flex;flex-direction:column;gap:10px;border-left:1px dashed rgba(255,255,255,0.1);margin-left:8px;padding-left:16px"><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.15s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">1</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Asks the model what to try, one request at a time</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.3s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,255,255,0.08);color:var(--muted-dark)">2</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Model reads the error and decides it looks exploitable</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.45s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,93,93,0.16);color:#ff9c9c">✕</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Writes a convincing narrative. No reproducible proof</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.6s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(255,93,93,0.16);color:#ff9c9c">✕</span><span style="font-size:0.84rem;line-height:1.5;color:#b9b1d1">Every step billed to the model; rerun costs the same again</span></div></div>
-            <div data-a="" style="margin-top:auto;border-radius:12px;padding:14px 16px;background:rgba(0,0,0,0.25);border:1px solid rgba(255,255,255,0.07);animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.85s both"><div style="font-family:var(--font-mono);font-size:0.72rem;color:#c3b2ff;font-weight:600">“id appears to be vulnerable to SQL injection…”</div><div style="font-family:var(--font-mono);font-size:0.66rem;color:var(--muted-dark);margin-top:4px">might be right · might be hallucinated · you can't tell</div></div>
-          </div>
-          <div class="comparison-card--steiner" style="position:relative;border-radius:18px;padding:24px 24px 22px;display:flex;flex-direction:column;gap:18px;border:2px solid #ff9a52;background:linear-gradient(160deg,rgba(255,138,61,0.20),rgba(255,138,61,0.06) 48%,rgba(46,189,133,0.09));box-shadow:0 24px 60px -25px rgba(255,138,61,0.55)">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap"><span style="font-family:var(--font-display);font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;color:#fff">Steiner</span><span style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:#ffb37e;border:1px solid rgba(255,138,61,0.45);border-radius:99px;padding:4px 9px">Proven exploit</span></div>
-            <p style="margin:-4px 0 0;color:#fff;font-family:var(--font-display);font-size:1.18rem;font-weight:700;line-height:1.25">Reproduced exploit. Evidence attached. Fix queued for retest.</p>
-            <div style="display:flex;flex-direction:column;gap:10px;border-left:1px dashed rgba(255,138,61,0.35);margin-left:8px;padding-left:16px"><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.15s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.84rem;line-height:1.5;color:#e9e5f6">Engine fingerprints the stack; AI picks the attack worth running</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.3s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.84rem;line-height:1.5;color:#e9e5f6">Out-of-band callback received from the target</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.45s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.84rem;line-height:1.5;color:#e9e5f6">Replayed 3/3 as alice, session held throughout</span></div><div data-a="" style="display:flex;gap:12px;align-items:flex-start;animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.6s both"><span style="flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;display:grid;place-items:center;font-size:0.6rem;font-family:var(--font-mono);background:rgba(46,189,133,0.18);color:#5fe0ae">✓</span><span style="font-size:0.84rem;line-height:1.5;color:#e9e5f6">Gated: in scope, real impact, not a duplicate</span></div></div>
-            <div data-a="" style="margin-top:auto;border-radius:12px;padding:14px 16px;background:rgba(46,189,133,0.1);border:1px solid rgba(46,189,133,0.4);animation:rowin 0.7s cubic-bezier(0.2,0.7,0.2,1) 0.85s both"><div style="font-family:var(--font-mono);font-size:0.72rem;color:#5fe0ae;font-weight:600">✓ SQL injection · PROVEN · HIGH</div><div style="font-family:var(--font-mono);font-size:0.66rem;color:#cfc8e8;margin-top:4px">3 rows leaked · proof attached · queued for auto-retest</div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="reveal d1" style="margin-top:22px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px">
-        <div style="padding:26px 26px 24px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)"><div style="font-family:var(--font-display);font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;line-height:1;color:var(--dast)">01</div><div style="font-family:var(--font-display);font-weight:650;font-size:1.15rem;margin:14px 0 6px;letter-spacing:-0.01em">Exploited, not suspected</div><div style="color:var(--muted);font-size:0.93rem">Nothing is reported without an independent, reproducible exploit.</div></div>
-        <div style="padding:26px 26px 24px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)"><div style="font-family:var(--font-display);font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;line-height:1;color:var(--dast)">02</div><div style="font-family:var(--font-display);font-weight:650;font-size:1.15rem;margin:14px 0 6px;letter-spacing:-0.01em">Autopilot or hands-on</div><div style="color:var(--muted);font-size:0.93rem">Full end-to-end scans, AI on or off, or hand the assistant a hunch.</div></div>
-        <div style="padding:26px 26px 24px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)"><div style="font-family:var(--font-display);font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;line-height:1;color:var(--dast)">03</div><div style="font-family:var(--font-display);font-weight:650;font-size:1.15rem;margin:14px 0 6px;letter-spacing:-0.01em">Retests itself</div><div style="color:var(--muted);font-size:0.93rem">Every proof re-fires each cycle. Fixes are verified, regressions reopened.</div></div>
-        <div style="padding:26px 26px 24px;border-radius:18px;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)"><div style="font-family:var(--font-display);font-size:2.2rem;font-weight:700;letter-spacing:-0.03em;line-height:1;color:var(--dast)">04</div><div style="font-family:var(--font-display);font-weight:650;font-size:1.15rem;margin:14px 0 6px;letter-spacing:-0.01em">AI where it counts</div><div style="color:var(--muted);font-size:0.93rem">The engine does the heavy lifting; AI handles judgement, under a hard cap.</div></div>
-      </div>
-    </div>
-  </section>
-  </sc-if>
 
 <section id="assistant" class="section"><div class="wrap"><div class="mode-intro"><div class="left"><div class="eyebrow">Run it your way · Next-gen hacking assistant</div><h2>Automate the whole test.<br><span class="accent">Or take the next move.</span></h2></div><p>Pick how much autonomy you want. Start a scan, target one concern, or talk Steiner through the investigation. The evidence stays together.</p></div>
 <div class="mode-hint"><span>CHOOSE HOW TO TEST</span><span><i aria-hidden="true"></i>Auto preview · click a card to explore</span></div>
@@ -439,8 +389,8 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
       </div>
       <div>
         <h4>Steiner</h4>
-        <a href="#different">Why it's different</a>
-        <a href="#assistant">Voice &amp; text assistant</a>
+        <a href="#assistant">Run it your way</a>
+        <a href="#wedge">Continuous validation</a>
         <a href="#demo">Request a demo</a>
       </div>
       <div>
@@ -456,7 +406,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
   </div>
 </footer>
 </x-dc>
-<script type="text/dc-logic" data-dc-script data-props='{"headline":{"editor":"enum","options":["AI finds the path","Every vuln proven","Not a scanner"],"default":"AI finds the path","tsType":"string"},"showComparison":{"editor":"boolean","default":true,"tsType":"boolean"}}'>
+<script type="text/dc-logic" data-dc-script data-props='{"headline":{"editor":"enum","options":["AI finds the path","Every vuln proven","Not a scanner"],"default":"AI finds the path","tsType":"string"}}'>
 class Component extends DCLogic {
   state = { scrolled: false, menu: false };
   componentDidMount() {
@@ -484,12 +434,9 @@ class Component extends DCLogic {
   componentWillUnmount() { document.removeEventListener('scroll', this.onScroll, { capture: true }); if (this.io) this.io.disconnect(); if (this.assistantCleanup) this.assistantCleanup(); }
   renderVals() {
     const h = this.props.headline ?? 'AI finds the path';
-    const showCompare = this.props.showComparison ?? true;
     const { scrolled, menu } = this.state;
     return {
       hA: h === 'AI finds the path', hB: h === 'Every vuln proven', hC: h === 'Not a scanner',
-      showCompare,
-      wedgePad: showCompare ? { paddingTop: 0 } : {},
       navCls: 'nav' + (scrolled || menu ? ' scrolled' : ''),
       linksCls: 'nav-links' + (menu ? ' open' : ''),
       menuLabel: menu ? 'CLOSE' : 'MENU',
