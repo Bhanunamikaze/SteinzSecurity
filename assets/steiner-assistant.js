@@ -76,7 +76,6 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
     toggle.querySelector('.rotation-label').textContent = paused ? 'Play demo' : 'Pause autoplay';
     root.classList.toggle('is-demo-hidden',document.hidden || !visible);
     toggle.setAttribute('aria-pressed',String(paused));
-    toggle.setAttribute('aria-label',paused ? 'Start automatic tab rotation' : 'Pause automatic tab rotation');
     if(progressAnimation) {if(isRunning()) progressAnimation.play(); else progressAnimation.pause();}
   }
   toggle.addEventListener('click',()=>{paused=!paused;syncRotation()}, {signal:events.signal});
