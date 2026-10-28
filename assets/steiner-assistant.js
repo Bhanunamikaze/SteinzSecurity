@@ -57,7 +57,7 @@ byId('voice-cycle').addEventListener('click',()=>{
   chooseMode(mode);renderExample(example);setVoice();restartClock();
   if(!reduced.matches) byId('voice-text').animate([{opacity:.25},{opacity:1}],{duration:220});
 });
-function chooseMode(mode){currentMode=mode;currentExample=0;root.querySelectorAll('[data-mode]').forEach(el=>{const selected=el.dataset.mode===mode;el.setAttribute('aria-pressed',String(selected));el.setAttribute('aria-selected',String(selected));el.tabIndex=selected?0:-1;const cue=el.querySelector('.mode-cta');if(cue)cue.firstChild.textContent=selected?'Showing demo ':'View demo '});byId('assistant-mode-panel').setAttribute('aria-labelledby','assistant-tab-'+mode);byId('console-product').textContent='STEINER / '+modes[mode][0];byId('left-title').textContent=modes[mode][1];byId('workspace-loc').textContent=`${modes[mode][2]} / APP.EXAMPLE.COM / ENGAGEMENT-12`;const list=byId('example-list');list.replaceChildren();scenarios[mode].forEach((s,i)=>{let b=document.createElement('button');b.className='example-btn';b.type='button';b.textContent=s.label;b.setAttribute('aria-pressed',String(i===0));b.addEventListener('click',()=>{renderExample(i);restartClock()});list.append(b)});renderExample(0)}
+function chooseMode(mode){currentMode=mode;currentExample=0;root.querySelectorAll('[data-mode]').forEach(el=>{const selected=el.dataset.mode===mode;el.setAttribute('aria-selected',String(selected));el.tabIndex=selected?0:-1;const cue=el.querySelector('.mode-cta');if(cue)cue.firstChild.textContent=selected?'Showing demo ':'View demo '});byId('assistant-mode-panel').setAttribute('aria-labelledby','assistant-tab-'+mode);byId('console-product').textContent='STEINER / '+modes[mode][0];byId('left-title').textContent=modes[mode][1];byId('workspace-loc').textContent=`${modes[mode][2]} / APP.EXAMPLE.COM / ENGAGEMENT-12`;const list=byId('example-list');list.replaceChildren();scenarios[mode].forEach((s,i)=>{let b=document.createElement('button');b.className='example-btn';b.type='button';b.textContent=s.label;b.setAttribute('aria-pressed',String(i===0));b.addEventListener('click',()=>{renderExample(i);restartClock()});list.append(b)});renderExample(0)}
 function renderExample(i){currentExample=i;const s=scenarios[currentMode][i];byId('example-list').querySelectorAll('button').forEach((b,k)=>b.setAttribute('aria-pressed',String(k===i)));byId('user-title').textContent=currentMode==='off'?'OPERATOR · AUTOMATION':currentMode==='partner'?'YOU · CHAT / VOICE':currentMode==='swarm'?'OPERATOR · ASSESSMENT':currentMode==='focused'?'OPERATOR · TEST TARGET':'OPERATOR · INVESTIGATION';byId('user-message').textContent=s.user;byId('user-attachment').textContent=s.attachment||'scope: staging.example.com';byId('agent-title').textContent=s.role;byId('agent-message').textContent=s.agent;byId('agent-addendum').textContent=s.source;byId('operator-hint').textContent=s.hint;byId('workspace-state').textContent=s.state;byId('run-title').textContent='EXECUTION / '+s.source;byId('run-meta').textContent=s.steps.length+' STEPS';let steps=byId('run-steps');steps.replaceChildren();s.steps.forEach(t=>{const li=document.createElement('li');const b=document.createElement('span');const content=document.createElement('span');b.className='bullet'+(t.startsWith('○')?' pending':'');b.textContent=t.startsWith('○')?'○':'✓';content.className='text';content.textContent=t.replace(/^[✓○]\s*/,'');li.append(b,content);steps.append(li)});byId('result').className='result'+(s.statusType==='pending'?' pending':s.statusType==='info'?' info':'');byId('result-title').textContent=s.resultTitle||'Finding evidence';byId('result-status').textContent=s.result;byId('result-code').textContent=s.code;byId('result-foot').replaceChildren();s.footer.forEach(t=>{let sp=document.createElement('span');sp.textContent=t;byId('result-foot').append(sp)});animateContent()}
 root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>{chooseMode(el.dataset.mode);restartClock()}));
 
@@ -129,12 +129,14 @@ root.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=
     root.querySelector('.workspace-top').style.minHeight = Math.ceil(topHeight)+'px';
     layoutWidth = root.querySelector('.wrap').getBoundingClientRect().width;
   }
-  chooseMode('partner');setVoice();reserveLayout();restartClock();
+  chooseMode('partner');setVoice();restartClock();
+  layoutWidth = root.querySelector('.wrap').getBoundingClientRect().width;
   const resizeObserver = new ResizeObserver(() => {
     const width = root.querySelector('.wrap').getBoundingClientRect().width;
     if(Math.abs(width-layoutWidth)>.5) reserveLayout();
   });
   resizeObserver.observe(root.querySelector('.wrap'));
+  // Measure once, after the fonts settle, instead of forcing two full layout passes.
   document.fonts.ready.then(()=>{if(!events.signal.aborted) reserveLayout()});
   const timer=setInterval(()=>{
     if(!isRunning())return;

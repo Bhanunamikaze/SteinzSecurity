@@ -21,12 +21,12 @@
 #assistant .mode-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:18px}
 #assistant .mode-card{min-width:0;text-align:left;position:relative;border:1px solid #e1dce9;border-radius:15px;padding:19px 16px 20px;background:#fff;display:flex;flex-direction:column;gap:7px;box-shadow:0 7px 18px -16px #29103999;transition:transform .22s,border-color .22s,background .22s,box-shadow .22s;min-height:145px}
 #assistant .mode-card:hover{transform:translateY(-3px);border-color:#ffc4a4}
-#assistant .mode-card[aria-pressed=true]{background:#fff7f1;border:1px solid #fd913f;box-shadow:inset 0 0 0 1px #ffc49d,0 12px 28px -22px #d56525}
+#assistant .mode-card[aria-selected=true]{background:#fff7f1;border:1px solid #fd913f;box-shadow:inset 0 0 0 1px #ffc49d,0 12px 28px -22px #d56525}
 #assistant .mode-card .num{font:650 10px var(--mono);letter-spacing:1.2px;color:#c96228}
 #assistant .mode-card b{font-family:var(--display);font-size:18px;line-height:1.1;letter-spacing:-.032em;color:#28203b}
 #assistant .mode-card small{font-size:12px;color:#7a7089;line-height:1.42}
 #assistant .mode-card .status{position:absolute;right:9px;top:8px;color:#786f88;font:600 8px var(--mono);padding:3px 5px;border:1px solid #ded8e5;background:#fcfaff;border-radius:4px}
-#assistant .mode-card[aria-pressed=true] .status{background:#fff;border-color:#ffd0ac}
+#assistant .mode-card[aria-selected=true] .status{background:#fff;border-color:#ffd0ac}
 #assistant .mode-micro{margin:-2px 0 17px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:#827890;font:500 11px var(--mono)}
 #assistant .mode-micro b{color:#3b2b4b}
 #assistant .console{border-radius:26px;background:radial-gradient(ellipse 48% 80% at 0 -28%,#6b3b498a,transparent 79%),radial-gradient(ellipse 44% 70% at 100% 130%,#5134827d,transparent 85%),var(--ink);padding:29px;color:#fff;box-shadow:0 22px 57px -43px #26163bc9}
@@ -230,3 +230,10 @@
 #assistant.is-demo-hidden .voicebar::before{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){#assistant .voicebar::before{animation:none!important}}
 #assistant .session-badges .rotation-label{font:inherit;color:inherit;background:none;border:0;padding:0;border-radius:0}
+
+/* PageSpeed accessibility: use contrast-safe colors on the light surface. */
+#assistant .mode-intro .eyebrow{color:#a64e1b}
+#assistant .mode-intro .accent{color:#d15a1a}
+#assistant .mode-hint{color:#76534d}
+#assistant .mode-micro{color:#6d627b}
+#assistant .note-footer{color:#6d6178}
