@@ -689,7 +689,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 
 .footer { background: var(--ink); color: var(--muted-dark); padding: 72px 0 40px; margin-top: -36px; padding-top: 110px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
-.footer h4 {
+.footer h3 {
   font-family: var(--font-mono);
   font-size: 0.7rem;
   letter-spacing: 0.16em;
@@ -837,7 +837,7 @@ main.sheet > .section, main.sheet > .section-tight { content-visibility: auto; c
 }
 .float-chip .fc-k { font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.18em; color: var(--violet-deep); }
 .float-chip b { font-family: var(--font-display); font-size: 0.97rem; letter-spacing: -0.01em; }
-.float-chip b em { font-style: normal; color: var(--ok); }
+.float-chip b em { font-style: normal; color: #1e7d58; }
 .float-chip .fc-t { font-size: 0.72rem; color: var(--muted); }
 
 /* ----- governance console (Plan) ----- */
